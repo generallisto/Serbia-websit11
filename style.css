@@ -1,4 +1,21 @@
-/* style.css - Улучшенная темная тема с сербской цветовой палитрой */
+/* SUPER CSS - ПОЛНЫЙ РЕБРАНДИНГ С АНИМАЦИЯМИ */
+
+:root {
+    /* ОСНОВНАЯ ПАЛИТРА СЕРБИИ */
+    --serbia-red: #c6363c;
+    --serbia-blue: #0c4076;
+    --serbia-white: #ffffff;
+    --gold-accent: #ffd700;
+    --dark-bg: #0a0a0a;
+    --medium-bg: #1a1a1a;
+    --light-bg: #2a2a2a;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --gradient-hero: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a1e1e 100%);
+    --gradient-card: linear-gradient(135deg, #1a1a1a 0%, #242424 100%);
+    --gradient-gold: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    --gradient-red: linear-gradient(135deg, #c6363c 0%, #e8454b 100%);
+}
 
 * {
     margin: 0;
@@ -8,165 +25,162 @@
 
 html {
     scroll-behavior: smooth;
+    font-size: 16px;
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 50%, #2a1e1e 100%);
-    background-attachment: fixed;
-    color: #f0f0f0;
+    background: var(--dark-bg);
+    color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
     font-weight: 400;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(198, 54, 60, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(12, 64, 118, 0.1) 0%, transparent 50%),
+        var(--gradient-hero);
+    background-attachment: fixed;
 }
 
-/* НОВАЯ ЦВЕТОВАЯ ПАЛИТРА СЕРБИИ */
-:root {
-    --serbia-red: #c6363c;
-    --serbia-blue: #0c4076;
-    --serbia-white: #f5f5f5;
-    --gold-accent: #d4af37;
-    --dark-bg: #0c0c0c;
-    --medium-bg: #1a1a1a;
-    --light-bg: #2a2a2a;
-    --card-bg: linear-gradient(135deg, #1a1a1a 0%, #242424 100%);
-    --text-primary: #f0f0f0;
-    --text-secondary: #b0b0b0;
-}
-
-/* Анимации */
-@keyframes pulse-gold {
-    0%, 100% { 
-        box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-    }
-    50% { 
-        box-shadow: 0 0 25px rgba(212, 175, 55, 0.7), 0 0 35px rgba(212, 175, 55, 0.3);
-    }
+/* 🔥 МЕГА-АНИМАЦИИ */
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(1deg); }
 }
 
 @keyframes glow {
     0%, 100% { 
-        filter: drop-shadow(0 0 5px rgba(198, 54, 60, 0.3));
+        box-shadow: 0 0 20px rgba(198, 54, 60, 0.3),
+                   0 0 40px rgba(255, 215, 0, 0.2); 
     }
     50% { 
-        filter: drop-shadow(0 0 15px rgba(198, 54, 60, 0.5));
+        box-shadow: 0 0 30px rgba(198, 54, 60, 0.6),
+                   0 0 60px rgba(255, 215, 0, 0.4); 
     }
 }
 
-@keyframes float {
-    0%, 100% { 
-        transform: translateY(0px); 
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(100px) scale(0.9);
     }
-    50% { 
-        transform: translateY(-8px); 
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 
-@keyframes gradient-shift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* ОПТИМИЗАЦИЯ ИЗОБРАЖЕНИЙ */
-.about-image,
-.place-image,
-.feature-image,
-.food-image,
-.culture-image {
-    background: var(--card-bg);
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-    transition: all 0.4s ease;
-    position: relative;
-    height: 400px;
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
 }
 
-.place-image { height: 280px; }
-.feature-image { height: 220px; }
-.food-image { height: 220px; }
-.culture-image { height: 200px; }
-
-.responsive-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transition: transform 0.5s ease;
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
 }
 
-/* Эффекты при наведении */
-.about-image:hover,
-.place-image:hover,
-.feature-image:hover,
-.food-image:hover,
-.culture-image:hover {
-    transform: translateY(-5px);
-    border-color: var(--serbia-red);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(198, 54, 60, 0.2);
-}
-
-.about-image:hover img,
-.place-image:hover img,
-.feature-image:hover img,
-.food-image:hover img,
-.culture-image:hover img {
-    transform: scale(1.05);
-}
-
-/* Боковое меню */
+/* 🎯 БОКОВОЕ МЕНЮ - СУПЕР СТИЛЬ */
 .side-nav {
     position: fixed;
-    right: 25px;
+    right: 30px;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 1000;
+    z-index: 10000;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 15px;
+    backdrop-filter: blur(20px);
+    background: rgba(26, 26, 26, 0.8);
+    padding: 20px 10px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
 }
 
 .nav-dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background: var(--text-secondary);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: pointer;
     position: relative;
+    border: 2px solid transparent;
 }
 
 .nav-dot.active {
-    background: var(--serbia-red);
-    transform: scale(1.4);
-    box-shadow: 0 0 15px var(--serbia-red);
+    background: var(--gold-accent);
+    transform: scale(1.5);
+    box-shadow: 0 0 20px var(--gold-accent);
+    animation: pulse 2s infinite;
+    border-color: var(--serbia-red);
 }
 
 .nav-dot:hover {
-    transform: scale(1.6);
-    background: var(--gold-accent);
-    box-shadow: 0 0 20px var(--gold-accent);
+    transform: scale(2);
+    background: var(--serbia-red);
+    box-shadow: 0 0 25px var(--serbia-red);
 }
 
-/* Header */
+.nav-dot::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--gradient-card);
+    color: var(--text-primary);
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    transition: all 0.3s ease;
+    border: 1px solid var(--gold-accent);
+    pointer-events: none;
+}
+
+.nav-dot:hover::after {
+    opacity: 1;
+    right: 30px;
+}
+
+/* 🚀 HEADER - С АНИМАЦИЕЙ ПРИ СКРОЛЛЕ */
 header {
-    background: rgba(12, 12, 12, 0.95) !important;
-    backdrop-filter: blur(15px);
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(25px);
     position: fixed;
     width: 100%;
-    z-index: 1000;
-    border-bottom: 1px solid rgba(198, 54, 60, 0.2);
-    top: 0;
-    left: 0;
-    transition: all 0.3s ease;
+    z-index: 9999;
+    border-bottom: 2px solid transparent;
+    background: linear-gradient(135deg, 
+        rgba(10, 10, 10, 0.98) 0%, 
+        rgba(26, 26, 26, 0.95) 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+header.scrolled {
+    background: rgba(10, 10, 10, 0.98);
+    border-bottom-color: var(--gold-accent);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    padding: 0.5rem 0;
 }
 
 nav {
@@ -174,54 +188,60 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 1.2rem 0;
+    transition: all 0.3s ease;
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--serbia-red) 0%, var(--gold-accent) 100%);
+    background: var(--gradient-gold);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: -0.5px;
     font-family: 'Playfair Display', serif;
+    animation: glow 3s ease-in-out infinite;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .nav-links a {
     text-decoration: none;
     color: var(--text-secondary);
-    font-weight: 500;
-    font-size: 0.95rem;
+    font-weight: 600;
+    font-size: 1rem;
     transition: all 0.3s ease;
     position: relative;
     padding: 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.nav-links a::after {
+.nav-links a::before {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--serbia-red), var(--gold-accent));
-    transition: width 0.3s ease;
+    height: 3px;
+    background: var(--gradient-gold);
+    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: 2px;
 }
 
 .nav-links a:hover {
     color: var(--text-primary);
+    transform: translateY(-2px);
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover::before {
     width: 100%;
 }
 
-/* Hero Section */
+/* 🌟 HERO SECTION - МЕГА АНИМАЦИИ */
 .hero {
     height: 100vh;
     display: flex;
@@ -231,9 +251,10 @@ nav {
     position: relative;
     overflow: hidden;
     padding-top: 80px;
-    background: linear-gradient(-45deg, #0c0c0c, #1a1a1a, #2a1e1e, #1c0c0c);
-    background-size: 400% 400%;
-    animation: gradient-shift 15s ease infinite;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(198, 54, 60, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(12, 64, 118, 0.2) 0%, transparent 50%),
+        var(--gradient-hero);
 }
 
 .hero::before {
@@ -244,514 +265,659 @@ nav {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 20% 80%, rgba(198, 54, 60, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(12, 64, 118, 0.15) 0%, transparent 50%);
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,215,0,0.05)" points="0,0 1000,0 1000,1000"/><polygon fill="rgba(198,54,60,0.05)" points="0,1000 0,0 1000,1000"/></svg>');
+    animation: float 20s ease-in-out infinite;
 }
 
 .hero-content h1 {
-    font-size: 4rem;
+    font-size: 5rem;
     font-weight: 800;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--serbia-white) 0%, var(--gold-accent) 100%);
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold-accent) 50%, var(--serbia-red) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: -1px;
     line-height: 1.1;
     font-family: 'Playfair Display', serif;
-    animation: float 6s ease-in-out infinite;
+    animation: 
+        glow 4s ease-in-out infinite,
+        float 6s ease-in-out infinite;
+    text-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+    position: relative;
+}
+
+.hero-content h1::after {
+    content: '🇷🇸';
+    position: absolute;
+    right: -60px;
+    top: 0;
+    font-size: 4rem;
+    animation: bounce 2s ease-in-out infinite;
 }
 
 .hero-content p {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 500;
     margin-bottom: 3rem;
     color: var(--text-secondary);
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    animation: fadeIn 1.5s ease-out 0.5s both;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* НОВЫЕ ПЕРЛАМУТРОВЫЕ КНОПКИ */
+/* 🎨 СУПЕР-КНОПКИ */
 .cta-button {
-    --white: #fff8e1;
-    --bg: #1a1a1a;
-    --radius: 50px;
-    outline: none;
-    cursor: pointer;
-    border: 0;
-    position: relative;
-    border-radius: var(--radius);
-    background-color: var(--bg);
-    transition: all 0.2s ease;
-    box-shadow:
-        inset 0 0.3rem 0.9rem rgba(255, 255, 255, 0.2),
-        inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
-        inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.3),
-        0 3rem 3rem rgba(0, 0, 0, 0.3),
-        0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    padding: 16px 32px;
+    gap: 15px;
+    padding: 20px 40px;
+    background: var(--gradient-red);
     color: var(--text-primary);
     text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    animation: float 4s ease-in-out infinite;
-}
-
-.cta-button .wrap {
-    font-size: 18px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 20px 35px;
-    border-radius: inherit;
+    border-radius: 60px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 2px solid transparent;
     position: relative;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    animation: 
+        pulse 2s ease-in-out infinite,
+        float 4s ease-in-out infinite;
+    box-shadow: 
+        0 10px 30px rgba(198, 54, 60, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-.cta-button .wrap p {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin: 0;
-    transition: all 0.2s ease;
-    transform: translateY(2%);
-}
-
-.cta-button .wrap::before,
-.cta-button .wrap::after {
-    content: "";
+.cta-button::before {
+    content: '';
     position: absolute;
-    transition: all 0.3s ease;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s ease;
 }
 
-.cta-button .wrap::before {
-    left: -15%;
-    right: -15%;
-    bottom: 25%;
-    top: -100%;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(198, 54, 60, 0.15) 0%, transparent 70%);
-}
-
-.cta-button .wrap::after {
-    left: 6%;
-    right: 6%;
-    top: 12%;
-    bottom: 40%;
-    border-radius: 22px 22px 0 0;
-    box-shadow: inset 0 10px 8px -10px rgba(255, 255, 255, 0.4);
-    background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.2) 0%,
-        rgba(0, 0, 0, 0) 50%,
-        rgba(0, 0, 0, 0) 100%
-    );
+.cta-button:hover::before {
+    left: 100%;
 }
 
 .cta-button:hover {
-    box-shadow:
-        inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.3),
-        inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
-        inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.4),
-        0 3rem 3rem rgba(0, 0, 0, 0.3),
-        0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
-    transform: translateY(-3px);
-}
-
-.cta-button:hover .wrap::before {
-    transform: translateY(-5%);
-}
-
-.cta-button:hover .wrap::after {
-    opacity: 0.4;
-    transform: translateY(5%);
-}
-
-.cta-button:hover .wrap p {
-    transform: translateY(-4%);
+    transform: 
+        translateY(-5px) 
+        scale(1.05) 
+        rotate(2deg);
+    background: var(--gradient-gold);
+    color: var(--dark-bg);
+    box-shadow: 
+        0 15px 40px rgba(255, 215, 0, 0.6),
+        0 0 50px rgba(255, 215, 0, 0.3);
+    border-color: var(--serbia-red);
 }
 
 .cta-button:active {
-    transform: translateY(2px);
-    box-shadow:
-        inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.4),
-        inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.8),
-        inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.3),
-        0 2rem 2rem rgba(0, 0, 0, 0.3),
-        0 0.5rem 0.5rem -0.3rem rgba(0, 0, 0, 0.8);
+    transform: translateY(2px) scale(0.98);
+    transition: all 0.1s ease;
 }
 
-/* Sections */
+.cta-button i {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover i {
+    transform: rotate(15deg) scale(1.2);
+}
+
+/* 🖼️ УНИВЕРСАЛЬНЫЙ СТИЛЬ ДЛЯ ВСЕХ ИЗОБРАЖЕНИЙ */
+.image-container {
+    position: relative;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--gradient-card);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* ЕДИНЫЕ РАЗМЕРЫ ДЛЯ ВСЕХ ИЗОБРАЖЕНИЙ */
+.about-image { height: 450px; }
+.place-image { height: 320px; }
+.feature-image { height: 250px; }
+.food-image { height: 250px; }
+.culture-image { height: 220px; }
+
+.responsive-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: brightness(0.9) contrast(1.1);
+}
+
+/* ЭФФЕКТЫ ПРИ НАВЕДЕНИИ НА ИЗОБРАЖЕНИЯ */
+.image-container:hover {
+    transform: 
+        translateY(-15px) 
+        rotateX(5deg) 
+        rotateY(5deg) 
+        scale(1.02);
+    border-color: var(--gold-accent);
+    box-shadow: 
+        0 25px 50px rgba(198, 54, 60, 0.3),
+        0 0 60px rgba(255, 215, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.image-container:hover .responsive-image {
+    transform: scale(1.1) rotate(1deg);
+    filter: brightness(1) contrast(1.2) saturate(1.2);
+}
+
+/* ПЛЕЙСХОЛДЕР ДЛЯ ОТСУТСТВУЮЩИХ ФОТО */
+.image-container::before {
+    content: '🇷🇸 Сербия';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    z-index: 1;
+    opacity: 0.6;
+    text-align: center;
+}
+
+/* 📱 СЕКЦИИ С АНИМАЦИЯМИ */
 section {
-    padding: 100px 0;
+    padding: 120px 0;
+    position: relative;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+section.active {
     opacity: 1;
     transform: translateY(0);
 }
 
 .section-title {
     text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
     color: var(--text-primary);
-    letter-spacing: -0.5px;
     font-family: 'Playfair Display', serif;
     position: relative;
     display: inline-block;
     left: 50%;
     transform: translateX(-50%);
+    animation: glow 5s ease-in-out infinite;
 }
 
 .section-title::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -15px;
     left: 25%;
     width: 50%;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--serbia-red), var(--gold-accent), transparent);
+    height: 4px;
+    background: var(--gradient-gold);
     border-radius: 2px;
+    animation: pulse 2s ease-in-out infinite;
 }
 
 .section-subtitle {
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--text-secondary);
-    margin-bottom: 3rem;
-    max-width: 600px;
+    margin-bottom: 4rem;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     font-weight: 400;
+    animation: fadeIn 1s ease-out 0.3s both;
 }
 
-/* About Section */
-.about-content {
+/* 🎴 КАРТОЧКИ С 3D ЭФФЕКТАМИ */
+.culture-grid,
+.places-grid,
+.food-grid,
+.facts-grid,
+.bajina-features,
+.pricing-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
+    gap: 2.5rem;
 }
 
-.about-text {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
+.culture-grid { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
+.places-grid { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
+.food-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.facts-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.bajina-features { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.pricing-grid { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
+
+.culture-card,
+.place-card,
+.food-card,
+.fact-card,
+.stat-card,
+.price-category {
+    background: var(--gradient-card);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
+.culture-card.visible,
+.place-card.visible,
+.food-card.visible,
+.fact-card.visible,
+.stat-card.visible,
+.price-category.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* ЭФФЕКТ ПРИ НАВЕДЕНИИ НА КАРТОЧКИ */
+.culture-card:hover,
+.place-card:hover,
+.food-card:hover,
+.fact-card:hover,
+.stat-card:hover,
+.price-category:hover {
+    transform: 
+        translateY(-15px) 
+        scale(1.03) 
+        rotateY(5deg);
+    border-color: var(--gold-accent);
+    box-shadow: 
+        0 20px 40px rgba(198, 54, 60, 0.3),
+        0 0 40px rgba(255, 215, 0, 0.2);
+    z-index: 10;
+}
+
+/* 📊 СТАТИСТИКА */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
     margin-top: 3rem;
 }
 
 .stat-card {
-    background: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 12px;
+    padding: 2.5rem 2rem;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.stat-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--serbia-red);
-    box-shadow: 0 10px 25px rgba(198, 54, 60, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .stat-number {
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 3rem;
+    font-weight: 800;
     color: var(--gold-accent);
     margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    animation: pulse 3s ease-in-out infinite;
 }
 
-/* Culture Section */
-.culture-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
+.stat-label {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.culture-card {
-    background: var(--card-bg);
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.3s ease;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
-.culture-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--serbia-red);
-    box-shadow: 0 15px 35px rgba(198, 54, 60, 0.15);
-}
-
-.culture-content {
-    padding: 1.5rem;
-    text-align: center;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.culture-content i {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--serbia-red) 0%, var(--gold-accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* Places Section */
-.places-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-}
-
-.place-card {
-    background: var(--card-bg);
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.place-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--serbia-red);
-    box-shadow: 0 15px 35px rgba(198, 54, 60, 0.15);
-}
-
-.place-card-content {
-    padding: 1.5rem;
-}
-
-.place-meta {
-    font-size: 0.85rem;
-    color: var(--gold-accent);
-    font-weight: 500;
-}
-
-/* Prices Section */
-.pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
+/* 💰 ЦЕНЫ */
 .price-category {
-    background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.3s ease;
-}
-
-.price-category:hover {
-    transform: translateY(-5px);
-    border-color: var(--serbia-red);
+    padding: 2.5rem;
 }
 
 .price-category h3 {
     color: var(--gold-accent);
-    margin-bottom: 1.5rem;
-    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    font-size: 1.4rem;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
+    animation: glow 4s ease-in-out infinite;
 }
 
 .price-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.03);
+    padding: 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
+    margin-bottom: 1rem;
 }
 
 .price-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(198, 54, 60, 0.2);
-    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--serbia-red);
+    transform: translateX(10px) scale(1.02);
 }
 
 .price-rsd {
-    font-weight: 600;
+    font-weight: 700;
     color: var(--gold-accent);
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
-/* Food Section */
-.food-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-}
-
+/* 🍽️ ЕДА */
 .food-card {
-    background: transparent;
-    padding: 0;
-    border-radius: 16px;
     text-align: center;
-    border: none;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.food-card:hover {
-    background: transparent;
-    transform: translateY(-8px);
+    padding: 0;
 }
 
 .food-card h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 1.5rem 0 0.5rem 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 1.5rem 0 1rem 0;
     color: var(--text-primary);
 }
 
+.food-card p {
+    color: var(--text-secondary);
+    padding: 0 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
 .price {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: 800;
     color: var(--gold-accent);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
+    animation: pulse 2s ease-in-out infinite;
 }
 
-/* Facts Section */
-.facts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-}
-
-.fact-card {
-    background: var(--card-bg);
-    padding: 2.5rem 2rem;
-    border-radius: 16px;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.3s ease;
+/* 🔥 ФУТЕР */
+footer {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    padding: 5rem 0 3rem;
+    margin-top: 5rem;
+    border-top: 3px solid var(--gold-accent);
     position: relative;
     overflow: hidden;
 }
 
-.fact-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--serbia-red);
-    box-shadow: 0 15px 35px rgba(198, 54, 60, 0.1);
-}
-
-.fact-card i {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, var(--serbia-red) 0%, var(--gold-accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* Footer */
-footer {
-    background: var(--dark-bg);
-    padding: 4rem 0 2rem;
-    margin-top: 4rem;
-    border-top: 1px solid rgba(198, 54, 60, 0.2);
-    position: relative;
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-gold);
+    animation: shimmer 3s ease-in-out infinite;
 }
 
 .footer-content {
     text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
 .footer-title {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 800;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--serbia-red) 0%, var(--gold-accent) 100%);
+    background: var(--gradient-gold);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-family: 'Playfair Display', serif;
+    animation: glow 4s ease-in-out infinite;
 }
 
-/* Responsive */
+/* 📱 МЕГА АДАПТИВНОСТЬ */
+@media (max-width: 1200px) {
+    .hero-content h1 {
+        font-size: 4rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+}
+
 @media (max-width: 768px) {
     .side-nav {
         display: none;
     }
-
+    
     .hero-content h1 {
+        font-size: 3rem;
+    }
+    
+    .hero-content h1::after {
         font-size: 2.5rem;
+        right: -40px;
     }
-
-    .about-content {
-        grid-template-columns: 1fr;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-
+    
     .nav-links {
         display: none;
     }
-
-    .places-grid,
+    
+    .section-title {
+        font-size: 2.2rem;
+    }
+    
+    /* ЕДИНЫЕ РАЗМЕРЫ ДЛЯ МОБИЛЬНЫХ */
+    .about-image,
+    .place-image,
+    .feature-image,
+    .food-image,
+    .culture-image {
+        height: 280px !important;
+    }
+    
     .culture-grid,
+    .places-grid,
     .food-grid,
     .facts-grid,
     .bajina-features,
     .pricing-grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
     }
     
-    .about-image {
-        height: 300px;
+    .cta-button {
+        padding: 16px 32px;
+        font-size: 1rem;
     }
     
-    .place-image {
-        height: 220px;
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
     }
     
-    .feature-image {
-        height: 180px;
+    .stat-number {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
     }
     
-    .food-image {
-        height: 180px;
+    .hero-content h1::after {
+        font-size: 2rem;
+        right: -30px;
     }
     
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .about-image,
+    .place-image,
+    .feature-image,
+    .food-image,
     .culture-image {
-        height: 180px;
+        height: 220px !important;
     }
     
-    .hero {
-        padding-top: 100px;
+    .cta-button {
+        padding: 14px 28px;
+        font-size: 0.9rem;
     }
     
-    section {
-        padding: 80px 0;
+    .stats-grid {
+        grid-template-columns: 1fr;
     }
     
-    .cta-button .wrap {
-        padding: 15px 25px;
-        font-size: 16px;
+    .price-category {
+        padding: 1.5rem;
     }
+}
+
+/* 🎭 АНИМАЦИИ ДЛЯ REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ✨ ДОПОЛНИТЕЛЬНЫЕ ЭФФЕКТЫ */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-red);
+    border: none;
+    border-radius: 50%;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(198, 54, 60, 0.5);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px) scale(1.1);
+    background: var(--gradient-gold);
+    color: var(--dark-bg);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+}
+
+.back-to-top.show {
+    display: flex;
+    animation: 
+        fadeIn 0.5s ease-out,
+        bounce 2s ease-in-out infinite;
+}
+
+/* 🔥 LOADING АНИМАЦИЯ */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    transition: opacity 0.5s ease;
+}
+
+.loading::after {
+    content: '🇷🇸';
+    font-size: 4rem;
+    animation: 
+        pulse 1s ease-in-out infinite,
+        rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 🌟 PARTICLE EFFECT */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--gold-accent);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+/* 🎉 FINAL TOUCHES */
+::selection {
+    background: var(--serbia-red);
+    color: var(--text-primary);
+    text-shadow: none;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-gold);
+    border-radius: 6px;
+    border: 2px solid var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--serbia-red);
 }
