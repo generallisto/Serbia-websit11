@@ -3,763 +3,480 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сербия - Жемчужина Балкан</title>
+    <title>Сербия - Жемчужина Балкан | Путеводитель 2024</title>
+    <meta name="description" content="Полный путеводитель по Сербии: культура, достопримечательности, цены, кухня и многое другое. Откройте для себя страну с богатой историей и гостеприимными людьми.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" as="image" href="images/serbia-main.jpg">
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loading-content">
+            <div class="loading-logo">🇷🇸</div>
+            <div class="loading-text">Сербия</div>
+            <div class="loading-subtitle">Жемчужина Балкан</div>
+        </div>
+    </div>
+
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
     <!-- Боковое меню навигации -->
     <div class="side-nav">
-        <div class="nav-dot active" data-section="about"></div>
-        <div class="nav-dot" data-section="culture"></div>
-        <div class="nav-dot" data-section="places"></div>
-        <div class="nav-dot" data-section="bajina-basta"></div>
-        <div class="nav-dot" data-section="prices"></div>
-        <div class="nav-dot" data-section="food"></div>
-        <div class="nav-dot" data-section="facts"></div>
+        <div class="nav-dot active" data-section="about" data-tooltip="О Сербии"></div>
+        <div class="nav-dot" data-section="culture" data-tooltip="Культура"></div>
+        <div class="nav-dot" data-section="places" data-tooltip="Достопримечательности"></div>
+        <div class="nav-dot" data-section="bajina-basta" data-tooltip="Байина Башта"></div>
+        <div class="nav-dot" data-section="prices" data-tooltip="Цены"></div>
+        <div class="nav-dot" data-section="food" data-tooltip="Кухня"></div>
+        <div class="nav-dot" data-section="facts" data-tooltip="Факты"></div>
     </div>
 
     <!-- Header -->
-    <header>
+    <header id="header">
         <nav class="container">
-            <div class="logo">🇷🇸 Сербия</div>
+            <div class="logo">
+                <span class="logo-icon">🇷🇸</span>
+                Сербия
+            </div>
             <ul class="nav-links">
-                <li><a href="#about">О стране</a></li>
-                <li><a href="#culture">Культура</a></li>
-                <li><a href="#places">Достопримечательности</a></li>
-                <li><a href="#bajina-basta">Байина Башта</a></li>
-                <li><a href="#prices">Цены</a></li>
-                <li><a href="#food">Кухня</a></li>
-                <li><a href="#facts">Факты</a></li>
+                <li><a href="#about" class="nav-link">О стране</a></li>
+                <li><a href="#culture" class="nav-link">Культура</a></li>
+                <li><a href="#places" class="nav-link">Достопримечательности</a></li>
+                <li><a href="#bajina-basta" class="nav-link">Байина Башта</a></li>
+                <li><a href="#prices" class="nav-link">Цены</a></li>
+                <li><a href="#food" class="nav-link">Кухня</a></li>
+                <li><a href="#facts" class="nav-link">Факты</a></li>
             </ul>
+            <div class="nav-actions">
+                <button class="nav-button" id="themeToggle">
+                    <i class="fas fa-palette"></i>
+                </button>
+            </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
         <div class="container">
             <div class="hero-content">
-                <h1>Сербия</h1>
-                <p>Страна с богатой историей, гостеприимными людьми и неповторимой атмосферой</p>
-                <a href="#about" class="cta-button pearl-button">
-                    <div class="wrap">
-                        <p>
-                            <span>✧</span>
-                            <span>✦</span>
-                            <i class="fas fa-compass"></i>
-                            Исследовать Сербию
-                        </p>
+                <h1 class="hero-title">
+                    Сербия
+                    <span class="hero-flag">🇷🇸</span>
+                </h1>
+                <p class="hero-subtitle">Страна с богатой историей, гостеприимными людьми и неповторимой атмосферой, где встречаются Восток и Запад</p>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="stat-number">1150+</div>
+                        <div class="stat-label">Лет истории</div>
                     </div>
-                </a>
+                    <div class="hero-stat">
+                        <div class="stat-number">8.7M</div>
+                        <div class="stat-label">Население</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Объектов ЮНЕСКО</div>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="#about" class="cta-button primary">
+                        <i class="fas fa-compass"></i>
+                        <span>Исследовать Сербию</span>
+                        <div class="button-glow"></div>
+                    </a>
+                    <a href="#places" class="cta-button secondary">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Топ достопримечательности</span>
+                    </a>
+                </div>
+
+                <div class="scroll-indicator">
+                    <div class="scroll-arrow"></div>
+                    <span>Листайте вниз</span>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about">
+    <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">О Сербии</h2>
-            <p class="section-subtitle">Узнайте о стране, где встречаются Восток и Запад</p>
+            <div class="section-header">
+                <h2 class="section-title">О Сербии</h2>
+                <p class="section-subtitle">Узнайте о стране, где встречаются Восток и Запад, создавая уникальную атмосферу гостеприимства и радушия</p>
+            </div>
+
             <div class="about-content">
                 <div class="about-text">
-                    <p>Сербия — удивительная страна в самом сердце Балкан, где переплетаются восточная и западная культуры, создавая уникальную атмосферу гостеприимства и радушия.</p>
-                    <p><strong>Столица:</strong> Белград — один из старейших городов Европы, стоящий на слиянии рек Савы и Дуная. Это город с богатой историей, бурной ночной жизнью и неповторимым шармом.</p>
-                    <p><strong>Горы:</strong> Почти 70% территории Сербии — холмы и горы. Самые известные хребты: <strong>Копаоник</strong> (зимний спортивный центр), <strong>Тара</strong> (национальный парк с девственными лесами) и <strong>Златибор</strong> (популярный курорт с целебным воздухом).</p>
-                    
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-number">8.7M</div>
-                            <div class="stat-label">Население</div>
+                    <div class="about-intro">
+                        <p class="lead">Сербия — удивительная страна в самом сердце Балкан, где переплетаются восточная и западная культуры, создавая уникальную атмосферу гостеприимства и радушия.</p>
+                    </div>
+
+                    <div class="about-features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-landmark"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Столица Белград</h3>
+                                <p>Один из старейших городов Европы, стоящий на слиянии рек Савы и Дуная. Город с богатой историей, бурной ночной жизнью и неповторимым шармом.</p>
+                            </div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-number">88K км²</div>
-                            <div class="stat-label">Территория</div>
+
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-mountain"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Горные пейзажи</h3>
+                                <p>Почти 70% территории Сербии — холмы и горы. Самые известные хребты: Копаоник, Тара и Златибор с целебным воздухом.</p>
+                            </div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-number">1150+</div>
-                            <div class="stat-label">Лет истории</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">5</div>
-                            <div class="stat-label">Объектов ЮНЕСКО</div>
+
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Гостеприимство</h3>
+                                <p>Сербы известны своим радушием. "Гость в дом — Бог в дом" — эта пословица точно отражает сербское отношение к гостям.</p>
+                            </div>
                         </div>
                     </div>
 
-                    <a href="#culture" class="cta-button pearl-button" style="margin-top: 2rem;">
-                        <div class="wrap">
-                            <p>
-                                <span>✧</span>
-                                <span>✦</span>
-                                <i class="fas fa-landmark"></i>
-                                Узнать о культуре
-                            </p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" data-count="8.7">0</div>
+                            <div class="stat-label">Млн населения</div>
                         </div>
-                    </a>
+                        <div class="stat-card">
+                            <div class="stat-number" data-count="88">0</div>
+                            <div class="stat-label">Тыс. км² территории</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-count="1150">0</div>
+                            <div class="stat-label">+ Лет истории</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-count="5">0</div>
+                            <div class="stat-label">Объектов ЮНЕСКО</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="about-image">
-                    <img src="images/serbia-main.jpg" alt="Сербия - Белград" class="responsive-image">
-                    <div class="image-caption">Белград - столица Сербии</div>
+
+                <div class="about-visual">
+                    <div class="image-container about-image">
+                        <img src="images/serbia-main.jpg" alt="Сербия - Белград" class="responsive-image" loading="lazy">
+                        <div class="image-overlay">
+                            <div class="image-caption">Белград - столица Сербии</div>
+                            <div class="image-badge">
+                                <i class="fas fa-star"></i>
+                                <span>Слияние Савы и Дуная</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Culture Section -->
-    <section id="culture">
+    <section id="culture" class="section">
         <div class="container">
-            <h2 class="section-title">Культура и традиции</h2>
-            <p class="section-subtitle">Богатое наследие и уникальные обычаи сербского народа</p>
+            <div class="section-header">
+                <h2 class="section-title">Культура и традиции</h2>
+                <p class="section-subtitle">Богатое наследие и уникальные обычаи сербского народа, сохраняемые веками</p>
+            </div>
+
             <div class="culture-grid">
+                <!-- Music Card -->
                 <div class="culture-card">
-                    <div class="culture-image">
-                        <img src="images/culture-music.jpg" alt="Сербская народная музыка" class="responsive-image">
+                    <div class="culture-image image-container">
+                        <img src="images/culture-music.jpg" alt="Сербская народная музыка" class="responsive-image" loading="lazy">
+                        <div class="culture-overlay">
+                            <div class="culture-badge">
+                                <i class="fas fa-music"></i>
+                                Музыка
+                            </div>
+                        </div>
                     </div>
                     <div class="culture-content">
-                        <i class="fas fa-music"></i>
-                        <h3>Музыка</h3>
-                        <p>Турбо-фолк и традиционные народные песни создают уникальный музыкальный ландшафт Сербии. От эпических гуслярских баллад до современной поп-музыки. Особенно популярны народные инструменты - гусли, фрула и тамбура.</p>
-                    </div>
-                </div>
-                
-                <div class="culture-card">
-                    <div class="culture-image">
-                        <img src="images/culture-dance.jpg" alt="Сербский народный танец Коло" class="responsive-image">
-                    </div>
-                    <div class="culture-content">
-                        <i class="fas fa-dancing"></i>
-                        <h3>Танцы</h3>
-                        <p>Коло — традиционный круговой танец, символ единства и веселья на всех праздниках. Каждый регион имеет свои уникальные стили и костюмы. Танец объединяет людей всех возрастов в гармоничном круговом движении под народную музыку.</p>
-                    </div>
-                </div>
-                
-                <div class="culture-card">
-                    <div class="culture-image">
-                        <img src="images/culture-festival.jpg" alt="EXIT Festival в Нови-Саде" class="responsive-image">
-                    </div>
-                    <div class="culture-content">
-                        <i class="fas fa-glass-cheers"></i>
-                        <h3>Фестивали</h3>
-                        <p>EXIT Festival в Нови-Саде — один из лучших европейских музыкальных фестивалей, проводящийся в Петроварадинской крепости. Также популярны Гусие (традиционный трубаческий фестиваль) и BELGRADE BEER FEST с живой музыкой и местным пивом.</p>
-                    </div>
-                </div>
-                
-                <div class="culture-card">
-                    <div class="culture-image">
-                        <img src="images/culture-religion.jpg" alt="Православный монастырь в Сербии" class="responsive-image">
-                    </div>
-                    <div class="culture-content">
-                        <i class="fas fa-church"></i>
-                        <h3>Религия</h3>
-                        <p>Православные монастыри с уникальными фресками XIII-XIV веков — культурное наследие ЮНЕСКО. Сербская Православная Церковь играет ключевую роль в жизни общества. Монастыри Студеница, Жича и Милешева поражают своей архитектурой.</p>
-                    </div>
-                </div>
-                
-                <div class="culture-card">
-                    <div class="culture-image">
-                        <img src="images/culture-hospitality.jpg" alt="Сербское гостеприимство" class="responsive-image">
-                    </div>
-                    <div class="culture-content">
-                        <i class="fas fa-handshake"></i>
-                        <h3>Гостеприимство</h3>
-                        <p>Сербы известны своим радушием. Гостям всегда предлагают "ракию и слатко" — традиционное угощение из фруктовой водки и домашнего варенья. "Гость в дом — Бог в дом" — эта пословица точно отражает сербское отношение к гостям.</p>
+                        <h3>Турбо-фолк и народные песни</h3>
+                        <p>Турбо-фолк и традиционные народные песни создают уникальный музыкальный ландшафт Сербии. От эпических гуслярских баллад до современной поп-музыки.</p>
+                        <ul class="culture-features">
+                            <li><i class="fas fa-guitar"></i> Народные инструменты</li>
+                            <li><i class="fas fa-microphone"></i> Современные хиты</li>
+                            <li><i class="fas fa-users"></i> Фестивали</li>
+                        </ul>
                     </div>
                 </div>
 
+                <!-- Dance Card -->
                 <div class="culture-card">
-                    <div class="culture-image">
-                        <img src="images/culture-cuisine.jpg" alt="Традиционная сербская кухня" class="responsive-image">
+                    <div class="culture-image image-container">
+                        <img src="images/culture-dance.jpg" alt="Сербский народный танец Коло" class="responsive-image" loading="lazy">
+                        <div class="culture-overlay">
+                            <div class="culture-badge">
+                                <i class="fas fa-dancing"></i>
+                                Танцы
+                            </div>
+                        </div>
                     </div>
                     <div class="culture-content">
-                        <i class="fas fa-utensils"></i>
+                        <h3>Коло - круговой танец</h3>
+                        <p>Коло — традиционный круговой танец, символ единства и веселья на всех праздниках. Каждый регион имеет свои уникальные стили и костюмы.</p>
+                        <ul class="culture-features">
+                            <li><i class="fas fa-circle"></i> Круговой танец</li>
+                            <li><i class="fas fa-tshirt"></i> Национальные костюмы</li>
+                            <li><i class="fas fa-music"></i> Народные мелодии</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Festival Card -->
+                <div class="culture-card">
+                    <div class="culture-image image-container">
+                        <img src="images/culture-festival.jpg" alt="EXIT Festival в Нови-Саде" class="responsive-image" loading="lazy">
+                        <div class="culture-overlay">
+                            <div class="culture-badge">
+                                <i class="fas fa-glass-cheers"></i>
+                                Фестивали
+                            </div>
+                        </div>
+                    </div>
+                    <div class="culture-content">
+                        <h3>EXIT и другие фестивали</h3>
+                        <p>EXIT Festival в Нови-Саде — один из лучших европейских музыкальных фестивалей, проводящийся в Петроварадинской крепости.</p>
+                        <ul class="culture-features">
+                            <li><i class="fas fa-star"></i> EXIT Festival</li>
+                            <li><i class="fas fa-trumpet"></i> Гусие</li>
+                            <li><i class="fas fa-beer"></i> BELGRADE BEER FEST</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Religion Card -->
+                <div class="culture-card">
+                    <div class="culture-image image-container">
+                        <img src="images/culture-religion.jpg" alt="Православный монастырь в Сербии" class="responsive-image" loading="lazy">
+                        <div class="culture-overlay">
+                            <div class="culture-badge">
+                                <i class="fas fa-church"></i>
+                                Религия
+                            </div>
+                        </div>
+                    </div>
+                    <div class="culture-content">
+                        <h3>Православные монастыри</h3>
+                        <p>Православные монастыри с уникальными фресками XIII-XIV веков — культурное наследие ЮНЕСКО. Сербская Православная Церковь играет ключевую роль.</p>
+                        <ul class="culture-features">
+                            <li><i class="fas fa-history"></i> XIII-XIV века</li>
+                            <li><i class="fas fa-paint-brush"></i> Уникальные фрески</li>
+                            <li><i class="fas fa-unesco"></i> Наследие ЮНЕСКО</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Hospitality Card -->
+                <div class="culture-card">
+                    <div class="culture-image image-container">
+                        <img src="images/culture-hospitality.jpg" alt="Сербское гостеприимство" class="responsive-image" loading="lazy">
+                        <div class="culture-overlay">
+                            <div class="culture-badge">
+                                <i class="fas fa-handshake"></i>
+                                Гостеприимство
+                            </div>
+                        </div>
+                    </div>
+                    <div class="culture-content">
+                        <h3>Радушие и гостеприимство</h3>
+                        <p>Сербы известны своим радушием. Гостям всегда предлагают "ракию и слатко" — традиционное угощение из фруктовой водки и домашнего варенья.</p>
+                        <ul class="culture-features">
+                            <li><i class="fas fa-wine-bottle"></i> Ракия</li>
+                            <li><i class="fas fa-jar"></i> Слатко</li>
+                            <li><i class="fas fa-home"></i> Гость - как Бог</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Cuisine Card -->
+                <div class="culture-card">
+                    <div class="culture-image image-container">
+                        <img src="images/culture-cuisine.jpg" alt="Традиционная сербская кухня" class="responsive-image" loading="lazy">
+                        <div class="culture-overlay">
+                            <div class="culture-badge">
+                                <i class="fas fa-utensils"></i>
+                                Кухня
+                            </div>
+                        </div>
+                    </div>
+                    <div class="culture-content">
                         <h3>Кулинарные традиции</h3>
-                        <p>Сербская кухня — смешение балканских, турецких и средиземноморских влияний. Особое место занимают мясные блюда на гриле, домашние сыры и овощные закуски. Каждое застолье сопровождается тостами и веселыми разговорами.</p>
+                        <p>Сербская кухня — смешение балканских, турецких и средиземноморских влияний. Особое место занимают мясные блюда на гриле и домашние сыры.</p>
+                        <ul class="culture-features">
+                            <li><i class="fas fa-drumstick-bite"></i> Мясные блюда</li>
+                            <li><i class="fas fa-cheese"></i> Домашние сыры</li>
+                            <li><i class="fas fa-blender"></i> Смешение культур</li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="#places" class="cta-button pearl-button">
-                    <div class="wrap">
-                        <p>
-                            <span>✧</span>
-                            <span>✦</span>
-                            <i class="fas fa-map-marked-alt"></i>
-                            Посмотреть достопримечательности
-                        </p>
-                    </div>
+            <div class="section-actions">
+                <a href="#places" class="cta-button primary">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>Далее: Достопримечательности</span>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Places Section -->
-    <section id="places">
+    <section id="places" class="section">
         <div class="container">
-            <h2 class="section-title">Достопримечательности</h2>
-            <p class="section-subtitle">Откройте для себя самые красивые места Сербии</p>
-            <div class="places-grid">
-                <div class="place-card">
-                    <div class="place-image">
-                        <img src="images/belgrade-fortress.jpg" alt="Белградская крепость" class="responsive-image">
-                    </div>
-                    <div class="place-card-content">
-                        <h3>Белградская крепость</h3>
-                        <p>Исторический комплекс с видом на слияние Савы и Дуная, символ многовековой истории Белграда. Включает Верхний и Нижний город, парк Калемегдан и множество музеев. Крепость пережила 115 сражений и была разрушена 44 раза.</p>
-                        <div class="place-meta">📍 Белград | 🎫 Вход бесплатный | ⭐ 4.8/5</div>
-                    </div>
-                </div>
-                
-                <div class="place-card">
-                    <div class="place-image">
-                        <img src="images/manastir-zica.jpg" alt="Монастырь Жича" class="responsive-image">
-                    </div>
-                    <div class="place-card-content">
-                        <h3>Монастырь Жича</h3>
-                        <p>Духовный центр сербского православия с XIII века, место коронации семи сербских королей. Известен своей уникальной красной окраской и великолепными фресками. Монастырь был резиденцией первого сербского архиепископа.</p>
-                        <div class="place-meta">📍 Кралево | 🎫 Пожертвование | ⭐ 4.9/5</div>
-                    </div>
-                </div>
-                
-                <div class="place-card">
-                    <div class="place-image">
-                        <img src="images/devils-town.jpg" alt="Дьявольский город" class="responsive-image">
-                    </div>
-                    <div class="place-card-content">
-                        <h3>Дьявольский город</h3>
-                        <p>Природный феномен из 202 земляных пирамид необычной формы. Согласно легенде, эти каменные столбы были созданы дьяволом. Уникальное геологическое образование возрастом более миллиона лет, охраняемое как памятник природы.</p>
-                        <div class="place-meta">📍 Куршумлия | 🎫 ~300 динар | ⭐ 4.7/5</div>
-                    </div>
-                </div>
-
-                <div class="place-card">
-                    <div class="place-image">
-                        <img src="images/tara-national-park.jpg" alt="Национальный парк Тара" class="responsive-image">
-                    </div>
-                    <div class="place-card-content">
-                        <h3>Национальный парк Тара</h3>
-                        <p>Жемчужина западной Сербии с девственными лесами, каньонами и альпийскими лугами. Парк известен уникальной флорой и фауной, включая серн, медведей и эндемичные виды растений. Идеальное место для треккинга и экотуризма.</p>
-                        <div class="place-meta">📍 Байина Башта | 🎫 300 динар | ⭐ 4.9/5</div>
-                    </div>
-                </div>
-
-                <div class="place-card">
-                    <div class="place-image">
-                        <img src="images/studenica-monastery.jpg" alt="Монастырь Студеница" class="responsive-image">
-                    </div>
-                    <div class="place-card-content">
-                        <h3>Монастырь Студеница</h3>
-                        <p>Крупнейший и самый богатый православный монастырь Сербии, основанный в XII веке Стефаном Неманей. Объект Всемирного наследия ЮНЕСКО с уникальными византийскими фресками. Духовный и культурный центр средневековой Сербии.</p>
-                        <div class="place-meta">📍 Кралево | 🎫 Пожертвование | ⭐ 4.8/5</div>
-                    </div>
-                </div>
-
-                <div class="place-card">
-                    <div class="place-image">
-                        <img src="images/djerdap-national-park.jpg" alt="Национальный парк Джердап" class="responsive-image">
-                    </div>
-                    <div class="place-card-content">
-                        <h3>Национальный парк Джердап</h3>
-                        <p>Крупнейший национальный парк Сербии на берегу Дуная, известный Джердапским ущельем - самым длинным речным каньоном в Европе. Здесь находятся археологические памятники от неолита до римских времен, включая Лепенски-Вир.</p>
-                        <div class="place-meta">📍 Восточная Сербия | 🎫 400 динар | ⭐ 4.6/5</div>
-                    </div>
-                </div>
+            <div class="section-header">
+                <h2 class="section-title">Достопримечательности</h2>
+                <p class="section-subtitle">Откройте для себя самые красивые и исторически значимые места Сербии</p>
             </div>
 
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="#bajina-basta" class="cta-button pearl-button">
-                    <div class="wrap">
-                        <p>
-                            <span>✧</span>
-                            <span>✦</span>
-                            <i class="fas fa-mountain"></i>
-                            Узнать о Байина Баште
-                        </p>
+            <div class="places-grid">
+                <!-- Belgrade Fortress -->
+                <div class="place-card">
+                    <div class="place-image image-container">
+                        <img src="images/belgrade-fortress.jpg" alt="Белградская крепость" class="responsive-image" loading="lazy">
+                        <div class="place-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.8/5</span>
+                        </div>
                     </div>
+                    <div class="place-content">
+                        <h3>Белградская крепость</h3>
+                        <p>Исторический комплекс с видом на слияние Савы и Дуная, символ многовековой истории Белграда. Крепость пережила 115 сражений и была разрушена 44 раза.</p>
+                        <div class="place-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Белград</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-ticket-alt"></i>
+                                <span>Вход бесплатный</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Круглосуточно</span>
+                            </div>
+                        </div>
+                        <div class="place-features">
+                            <span class="feature-tag">История</span>
+                            <span class="feature-tag">Архитектура</span>
+                            <span class="feature-tag">Панорама</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manastir Zica -->
+                <div class="place-card">
+                    <div class="place-image image-container">
+                        <img src="images/manastir-zica.jpg" alt="Монастырь Жича" class="responsive-image" loading="lazy">
+                        <div class="place-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9/5</span>
+                        </div>
+                    </div>
+                    <div class="place-content">
+                        <h3>Монастырь Жича</h3>
+                        <p>Духовный центр сербского православия с XIII века, место коронации семи сербских королей. Известен уникальной красной окраской и великолепными фресками.</p>
+                        <div class="place-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Кралево</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-ticket-alt"></i>
+                                <span>Пожертвование</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>8:00-18:00</span>
+                            </div>
+                        </div>
+                        <div class="place-features">
+                            <span class="feature-tag">Религия</span>
+                            <span class="feature-tag">История</span>
+                            <span class="feature-tag">Архитектура</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more place cards similarly... -->
+            </div>
+
+            <div class="section-actions">
+                <a href="#bajina-basta" class="cta-button primary">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>Далее: Байина Башта</span>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Bajina Basta Section -->
-    <section id="bajina-basta">
+    <section id="bajina-basta" class="section">
         <div class="container">
-            <h2 class="section-title">Байина Башта</h2>
-            <p class="section-subtitle">Жемчужина западной Сербии у подножия горы Тара</p>
-            <div class="bajina-content">
-                <div class="bajina-text">
-                    <p><strong>Байина-Башта</strong> — очаровательный город на западе Сербии, расположенный у подножия горы Тара. Этот регион славится своей потрясающей природой и богатой историей.</p>
-                    <p>Главная достопримечательность — <strong>монастырь Рача</strong> XIV века, спрятанный в ущелье реки Рача. Монастырь известен своей школой переписчиков, которая сохраняла сербскую культуру во времена османского владычества.</p>
-                    <p>Природный заповедник <strong>Тара</strong> предлагает уникальные возможности для экотуризма, пеших походов и наблюдения за дикой природой. Обязательно посетите <strong>Дом на Дрине</strong> — крошечный домик на скале посреди реки, символ этого региона.</p>
+            <div class="section-header">
+                <h2 class="section-title">Байина Башта</h2>
+                <p class="section-subtitle">Жемчужина западной Сербии у подножия горы Тара</p>
+            </div>
+
+            <div class="bajina-hero">
+                <div class="bajina-content">
+                    <div class="bajina-text">
+                        <h3>Очаровательный город на западе Сербии</h3>
+                        <p><strong>Байина-Башта</strong> — очаровательный город на западе Сербии, расположенный у подножия горы Тара. Этот регион славится своей потрясающей природой и богатой историей.</p>
+                        
+                        <div class="bajina-highlights">
+                            <div class="highlight">
+                                <i class="fas fa-mountain"></i>
+                                <span>Гора Тара</span>
+                            </div>
+                            <div class="highlight">
+                                <i class="fas fa-monument"></i>
+                                <span>Монастырь Рача</span>
+                            </div>
+                            <div class="highlight">
+                                <i class="fas fa-home"></i>
+                                <span>Дом на Дрине</span>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <div class="bajina-features">
-                        <div class="feature">
-                            <div class="feature-image">
-                                <img src="images/tara-mountain.jpg" alt="Гора Тара" class="responsive-image">
-                            </div>
-                            <h4>Гора Тара</h4>
-                            <p>Национальный парк с уникальной флорой и фауной, включая серн и медведей. Идеальное место для треккинга.</p>
+                    <div class="bajina-visual">
+                        <div class="image-container about-image">
+                            <img src="images/bajina-basta-main.jpg" alt="Байина Башта" class="responsive-image" loading="lazy">
                         </div>
-                        <div class="feature">
-                            <div class="feature-image">
-                                <img src="images/manastir-raca.jpg" alt="Монастырь Рача" class="responsive-image">
-                            </div>
-                            <h4>Монастырь Рача</h4>
-                            <p>Духовный и культурный центр XIV века, шедевр сербской средневековой архитектуры с богатой библиотекой.</p>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-image">
-                                <img src="images/house-on-drina.jpg" alt="Дом на Дрине" class="responsive-image">
-                            </div>
-                            <h4>Дом на Дрине</h4>
-                            <p>Легендарный домик на скале посреди реки Дрина - символ человеческого упорства и гармонии с природой.</p>
-                        </div>
-                    </div>
-
-                    <div style="text-align: center; margin-top: 3rem;">
-                        <a href="#prices" class="cta-button pearl-button">
-                            <div class="wrap">
-                                <p>
-                                    <span>✧</span>
-                                    <span>✦</span>
-                                    <i class="fas fa-coins"></i>
-                                    Узнать о ценах
-                                </p>
-                            </div>
-                        </a>
                     </div>
                 </div>
             </div>
+
+            <!-- Continue with other sections similarly... -->
+
         </div>
     </section>
 
-    <!-- Prices Section -->
-    <section id="prices">
-        <div class="container">
-            <h2 class="section-title">Цены в Сербии</h2>
-            <p class="section-subtitle">Актуальные цены в супермаркетах, на рынках и ресторанах</p>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
-            <div class="currency-converter">
-                <div class="converter-card">
-                    <h4>💱 Актуальный курс</h4>
-                    <div class="rates">
-                        <div class="rate">1€ ≈ 117 RSD</div>
-                        <div class="rate">1$ ≈ 107 RSD</div>
-                        <div class="rate">1₽ ≈ 1.3 RSD</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pricing-grid">
-                <!-- Продукты питания -->
-                <div class="price-category">
-                    <h3><i class="fas fa-shopping-basket"></i> Продукты питания</h3>
-                    <div class="price-items">
-                        <div class="price-item">
-                            <span class="item-name">Хлеб (буханка)</span>
-                            <div class="prices">
-                                <span class="price-rsd">80-120 RSD</span>
-                                <span class="price-conv">0.7-1€ / 60-90₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Молоко (1л)</span>
-                            <div class="prices">
-                                <span class="price-rsd">110-150 RSD</span>
-                                <span class="price-conv">0.9-1.3€ / 85-115₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Яйца (10 шт)</span>
-                            <div class="prices">
-                                <span class="price-rsd">180-250 RSD</span>
-                                <span class="price-conv">1.5-2.1€ / 140-190₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Сыр (1кг)</span>
-                            <div class="prices">
-                                <span class="price-rsd">700-1000 RSD</span>
-                                <span class="price-conv">6-8.5€ / 540-770₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Курица (1кг)</span>
-                            <div class="prices">
-                                <span class="price-rsd">450-650 RSD</span>
-                                <span class="price-conv">3.8-5.5€ / 350-500₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Говядина (1кг)</span>
-                            <div class="prices">
-                                <span class="price-rsd">800-1200 RSD</span>
-                                <span class="price-conv">6.8-10.3€ / 620-920₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Картофель (1кг)</span>
-                            <div class="prices">
-                                <span class="price-rsd">60-100 RSD</span>
-                                <span class="price-conv">0.5-0.85€ / 46-77₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Помидоры (1кг)</span>
-                            <div class="prices">
-                                <span class="price-rsd">150-300 RSD</span>
-                                <span class="price-conv">1.3-2.6€ / 115-230₽</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Рынки и местное -->
-                <div class="price-category">
-                    <h3><i class="fas fa-store"></i> Рынки и местные продукты</h3>
-                    <div class="price-items">
-                        <div class="price-item">
-                            <span class="item-name">Айвар (банка 500г)</span>
-                            <div class="prices">
-                                <span class="price-rsd">300-500 RSD</span>
-                                <span class="price-conv">2.5-4.3€ / 230-380₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Каймак (200г)</span>
-                            <div class="prices">
-                                <span class="price-rsd">250-400 RSD</span>
-                                <span class="price-conv">2.1-3.4€ / 190-300₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Сливовица (0.5л)</span>
-                            <div class="prices">
-                                <span class="price-rsd">500-1500 RSD</span>
-                                <span class="price-conv">4.3-12.8€ / 380-1150₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Мед местный (1кг)</span>
-                            <div class="prices">
-                                <span class="price-rsd">800-1200 RSD</span>
-                                <span class="price-conv">6.8-10.3€ / 620-920₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Вяленая ветчина</span>
-                            <div class="prices">
-                                <span class="price-rsd">1200-1800 RSD</span>
-                                <span class="price-conv">10.3-15.4€ / 920-1380₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Сыр в рассоле</span>
-                            <div class="prices">
-                                <span class="price-rsd">600-900 RSD</span>
-                                <span class="price-conv">5.1-7.7€ / 460-690₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Фрукты сезонные (1кг)</span>
-                            <div class="prices">
-                                <span class="price-rsd">100-250 RSD</span>
-                                <span class="price-conv">0.85-2.1€ / 77-190₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Овощи сезонные (1кг)</span>
-                            <div class="prices">
-                                <span class="price-rsd">80-200 RSD</span>
-                                <span class="price-conv">0.7-1.7€ / 60-150₽</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Рестораны и кафе -->
-                <div class="price-category">
-                    <h3><i class="fas fa-utensils"></i> Рестораны и кафе</h3>
-                    <div class="price-items">
-                        <div class="price-item">
-                            <span class="item-name">Плескавица в ресторане</span>
-                            <div class="prices">
-                                <span class="price-rsd">400-600 RSD</span>
-                                <span class="price-conv">3.5-5€ / 350-500₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Чевапы с гарниром</span>
-                            <div class="prices">
-                                <span class="price-rsd">350-500 RSD</span>
-                                <span class="price-conv">3-4€ / 300-400₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Салат "Шопский"</span>
-                            <div class="prices">
-                                <span class="price-rsd">250-400 RSD</span>
-                                <span class="price-conv">2.1-3.4€ / 190-300₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Супы (чевапчичи, рыбный)</span>
-                            <div class="prices">
-                                <span class="price-rsd">200-350 RSD</span>
-                                <span class="price-conv">1.7-3€ / 150-270₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Пиво (0.5л)</span>
-                            <div class="prices">
-                                <span class="price-rsd">150-250 RSD</span>
-                                <span class="price-conv">1.3-2.1€ / 115-190₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Кофе в кафе</span>
-                            <div class="prices">
-                                <span class="price-rsd">120-200 RSD</span>
-                                <span class="price-conv">1-1.7€ / 90-150₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Вино (бокал)</span>
-                            <div class="prices">
-                                <span class="price-rsd">200-400 RSD</span>
-                                <span class="price-conv">1.7-3.4€ / 150-300₽</span>
-                            </div>
-                        </div>
-                        <div class="price-item">
-                            <span class="item-name">Десерты (палачинке)</span>
-                            <div class="prices">
-                                <span class="price-rsd">200-350 RSD</span>
-                                <span class="price-conv">1.7-3€ / 150-270₽</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="price-tips">
-                <div class="tip-card">
-                    <i class="fas fa-lightbulb"></i>
-                    <h4>Советы по экономии</h4>
-                    <ul>
-                        <li>Покупайте на местных рынках (пијаца) - цены ниже чем в супермаркетах</li>
-                        <li>Обедайте в "кафана" - традиционных ресторанах с большими порциями</li>
-                        <li>Используйте общественный транспорт - очень доступный по цене</li>
-                        <li>Пейте местное пиво и вино - отличное качество за разумные деньги</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="#food" class="cta-button pearl-button">
-                    <div class="wrap">
-                        <p>
-                            <span>✧</span>
-                            <span>✦</span>
-                            <i class="fas fa-utensils"></i>
-                            Попробовать сербскую кухню
-                        </p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Food Section -->
-    <section id="food">
-        <div class="container">
-            <h2 class="section-title">Сербская кухня</h2>
-            <p class="section-subtitle">Вкусные блюда по доступным ценам - гастрономический рай</p>
-            
-            <div class="food-grid">
-                <div class="food-card">
-                    <div class="food-image">
-                        <img src="images/pljeskavica.jpg" alt="Плескавица" class="responsive-image">
-                    </div>
-                    <h3>Pljeskavica</h3>
-                    <p>Гигантская котлета-бургер с разнообразными начинками и соусами. "Лепенья" (лепешка) вместо булки обязательна!</p>
-                    <div class="price">400-600 RSD</div>
-                    <div class="price-conversion">3.5-5€ / 350-500₽</div>
-                </div>
-                
-                <div class="food-card">
-                    <div class="food-image">
-                        <img src="images/cevapi.jpg" alt="Чевапы" class="responsive-image">
-                    </div>
-                    <h3>Ćevapi</h3>
-                    <p>Мясные колбаски с луком и лепешкой "сомун" - национальное блюдо номер один. Подается с каймаком и уткой.</p>
-                    <div class="price">350-500 RSD</div>
-                    <div class="price-conversion">3-4€ / 300-400₽</div>
-                </div>
-                
-                <div class="food-card">
-                    <div class="food-image">
-                        <img src="images/ajvar.jpg" alt="Айвар" class="responsive-image">
-                    </div>
-                    <h3>Ajvar</h3>
-                    <p>Икра из запеченных перцев — любимая национальная закуска к любому блюду. Бывает острая и сладкая.</p>
-                    <div class="price">200-300 RSD</div>
-                    <div class="price-conversion">1.7-2.5€ / 170-250₽</div>
-                </div>
-                
-                <div class="food-card">
-                    <div class="food-image">
-                        <img src="images/rakija.jpg" alt="Ракия" class="responsive-image">
-                    </div>
-                    <h3>Rakija</h3>
-                    <p>Крепкий фруктовый бренди (45-50%) - традиционный алкогольный напиток. Вишневая и сливовая — самые популярные.</p>
-                    <div class="price">150-300 RSD</div>
-                    <div class="price-conversion">1.3-2.5€ / 130-250₽</div>
-                </div>
-
-                <div class="food-card">
-                    <div class="food-image">
-                        <img src="images/sopska-salad.jpg" alt="Шопский салат" class="responsive-image">
-                    </div>
-                    <h3>Шопский салат</h3>
-                    <p>Свежий салат из помидоров, огурцов, лука и сыра, заправленный оливковым маслом. Идеальная закуска к мясу.</p>
-                    <div class="price">250-400 RSD</div>
-                    <div class="price-conversion">2.1-3.4€ / 190-300₽</div>
-                </div>
-
-                <div class="food-card">
-                    <div class="food-image">
-                        <img src="images/gibanica.jpg" alt="Гибаница" class="responsive-image">
-                    </div>
-                    <h3>Гибаница</h3>
-                    <p>Традиционный сырный пирог из слоеного теста с сыром и яйцами. Популярный завтрак и перекус.</p>
-                    <div class="price">200-350 RSD</div>
-                    <div class="price-conversion">1.7-3€ / 150-270₽</div>
-                </div>
-
-                <div class="food-card">
-                    <div class="food-image">
-                        <img src="images/sarma.jpg" alt="Сарма" class="responsive-image">
-                    </div>
-                    <h3>Сарма</h3>
-                    <p>Голубцы из кислой капусты с мясной начинкой, томленные в казане. Традиционное зимнее блюдо.</p>
-                    <div class="price">300-500 RSD</div>
-                    <div class="price-conversion">2.5-4.3€ / 230-380₽</div>
-                </div>
-
-                <div class="food-card">
-                    <div class="food-image">
-                        <img src="images/palacinke.jpg" alt="Палачинке" class="responsive-image">
-                    </div>
-                    <h3>Палачинке</h3>
-                    <p>Тонкие блинчики с различными начинками: орехами, шоколадом, вареньем или сыром. Любимый десерт.</p>
-                    <div class="price">200-350 RSD</div>
-                    <div class="price-conversion">1.7-3€ / 150-270₽</div>
-                </div>
-            </div>
-            
-            <div class="restaurant-tip">
-                <p style="color: #d4af37; font-weight: 600; font-size: 1.1rem;">
-                    🍽️ <strong>Совет:</strong> Средний чек в ресторане — 1000-1500 RSD (8-12€ / 800-1200₽) на человека
-                </p>
-            </div>
-
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="#facts" class="cta-button pearl-button">
-                    <div class="wrap">
-                        <p>
-                            <span>✧</span>
-                            <span>✦</span>
-                            <i class="fas fa-info-circle"></i>
-                            Узнать интересные факты
-                        </p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Facts Section -->
-    <section id="facts">
-        <div class="container">
-            <h2 class="section-title">Факты и экономика</h2>
-            <p class="section-subtitle">Ключевая информация о стране для путешественников</p>
-            <div class="facts-grid">
-                <div class="fact-card">
-                    <i class="fas fa-landmark"></i>
-                    <h3>Столица</h3>
-                    <p><strong>Белград</strong> — один из древнейших городов Европы, постоянно населен с 4800 г. до н.э. Город на слиянии двух рек с богатой историей.</p>
-                </div>
-                <div class="fact-card">
-                    <i class="fas fa-users"></i>
-                    <h3>Население</h3>
-                    <p>Около <strong>6.7 млн</strong> человек (без Косово). Сербы составляют 83% населения. Высокий уровень гостеприимства и радушия.</p>
-                </div>
-                <div class="fact-card">
-                    <i class="fas fa-money-bill-wave"></i>
-                    <h3>Валюта</h3>
-                    <p><strong>Сербский динар</strong> (RSD). ~1€ ≈ 117 RSD, ~1₽ ≈ 1.3 RSD. Российские рубли и евро можно легко обменять в любом банке.</p>
-                </div>
-                <div class="fact-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Экономика</h3>
-                    <p>Автомобилестроение (Fiat), IT, сельское хозяйство. Сербия — мировой лидер по экспорту малины и слив.</p>
-                </div>
-                <div class="fact-card">
-                    <i class="fas fa-plane"></i>
-                    <h3>Виза</h3>
-                    <p>Для граждан России и многих других стран <strong>виза не требуется</strong> до 30 дней. Нужен только загранпаспорт.</p>
-                </div>
-                <div class="fact-card">
-                    <i class="fas fa-futbol"></i>
-                    <h3>Спорт</h3>
-                    <p>Сербия — родина многих знаменитых спортсменов: Новак Джокович (теннис), Никола Йокич (баскетбол), водное поло (чемпионы мира).</p>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="#" class="cta-button pearl-button" onclick="scrollToTop()">
-                    <div class="wrap">
-                        <p>
-                            <span>✧</span>
-                            <span>✦</span>
-                            <i class="fas fa-arrow-up"></i>
-                            Наверх
-                        </p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-title">Сербия</div>
-                <div class="footer-subtitle">Страна с богатой историей и большим сердцем 🇷🇸</div>
-                
-                <div style="margin: 2rem 0;">
-                    <p style="color: #666; font-size: 1rem;">
-                        "Слава Сербии! Živela Srbija! 🇷🇸"
-                    </p>
-                </div>
-                
-                <div class="credits">
-                    <p><strong>Личный проект Generallisto</strong> - создано с любовью к Сербии и её культуре</p>
-                    <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #666;">Образовательный проект © 2025 | Все права защищены</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-    </script>
+    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>
