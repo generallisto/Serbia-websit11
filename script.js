@@ -1,30 +1,93 @@
-// script.js - Улучшенная версия с оптимизацией и новыми функциями
-class SerbiaWebsite {
+// SUPER_JS.js - МЕГА АНИМАЦИИ И ИНТЕРАКТИВ 
+class SerbiaExplorer {
     constructor() {
+        this.isScrolling = false;
         this.lastScrollTop = 0;
         this.scrollDirection = 'down';
-        this.isScrolling = false;
-        this.scrollTimeout = null;
+        this.observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
         
         this.init();
     }
 
     init() {
+        this.createParticles();
+        this.setupLoadingScreen();
         this.setupSmoothScroll();
         this.setupNavigation();
+        this.setupAnimations();
+        this.setupInteractiveElements();
         this.setupHeaderEffects();
         this.setupBackToTop();
-        this.setupCardAnimations();
-        this.setupScrollAnimations();
+        this.setupCounters();
+        this.setupImageEffects();
         this.setupParallax();
-        this.setupImageLazyLoading();
-        this.setupInteractiveElements();
-        this.setupPerformanceOptimizations();
+        this.setupThemeToggle();
         
         this.bindEvents();
+        
+        // Запуск начальных анимаций
+        setTimeout(() => {
+            this.animateHero();
+        }, 1000);
     }
 
-    // Плавная прокрутка
+    // 🎭 PARTICLE SYSTEM
+    createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 50;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Случайные свойства
+            const size = Math.random() * 4 + 2;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            const delay = Math.random() * 10;
+            const duration = Math.random() * 10 + 10;
+            const color = Math.random() > 0.5 ? 'var(--gold-accent)' : 'var(--serbia-red)';
+            
+            Object.assign(particle.style, {
+                width: `${size}px`,
+                height: `${size}px`,
+                left: `${posX}%`,
+                top: `${posY}%`,
+                background: color,
+                animationDelay: `${delay}s`,
+                animationDuration: `${duration}s`
+            });
+            
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    // ⏳ LOADING SCREEN
+    setupLoadingScreen() {
+        const loading = document.getElementById('loading');
+        
+        // Симуляция загрузки
+        setTimeout(() => {
+            loading.style.opacity = '0';
+            setTimeout(() => {
+                loading.style.display = 'none';
+                this.triggerInitialAnimations();
+            }, 500);
+        }, 2000);
+    }
+
+    triggerInitialAnimations() {
+        // Анимация появления элементов
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
+        });
+    }
+
+    // 🎯 SMOOTH SCROLL
     setupSmoothScroll() {
         const navLinks = document.querySelectorAll('a[href^="#"]');
         
@@ -33,6 +96,9 @@ class SerbiaWebsite {
                 e.preventDefault();
                 const targetId = link.getAttribute('href').substring(1);
                 this.scrollToSection(targetId);
+                
+                // Анимация клика
+                this.animateButtonClick(link);
             });
         });
     }
@@ -50,23 +116,26 @@ class SerbiaWebsite {
         });
     }
 
-    // Навигация и активные состояния
+    // 🧭 NAVIGATION
     setupNavigation() {
         this.sections = document.querySelectorAll('section');
         this.navDots = document.querySelectorAll('.nav-dot');
+        this.navLinks = document.querySelectorAll('.nav-link');
 
         // Клик по точкам навигации
         this.navDots.forEach(dot => {
             dot.addEventListener('click', () => {
                 const sectionId = dot.dataset.section;
                 this.scrollToSection(sectionId);
+                this.animateElement(dot, 'pulse');
             });
         });
 
-        this.updateActiveSection();
+        // Активное состояние навигации
+        this.updateActiveNavigation();
     }
 
-    updateActiveSection = () => {
+    updateActiveNavigation = () => {
         const scrollPos = window.scrollY + 100;
         let currentSection = '';
 
@@ -83,15 +152,253 @@ class SerbiaWebsite {
             }
         });
 
-        // Обновляем активную точку навигации
+        // Обновляем точки навигации
         this.navDots.forEach(dot => {
             dot.classList.toggle('active', dot.dataset.section === currentSection);
         });
+
+        // Обновляем ссылки в хедере
+        this.navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${currentSection}`);
+        });
     }
 
-    // Эффекты для хедера
+    // 🎬 ANIMATIONS SYSTEM
+    setupAnimations() {
+        // Intersection Observer для анимаций при скролле
+        this.animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.animateOnScroll(entry.target);
+                }
+            });
+        }, this.observerOptions);
+
+        // Наблюдаем за всеми анимируемыми элементами
+        document.querySelectorAll('.culture-card, .place-card, .food-card, .fact-card, .stat-card, .price-category').forEach(el => {
+            this.animationObserver.observe(el);
+        });
+    }
+
+    animateOnScroll(element) {
+        element.classList.add('visible');
+        
+        // Добавляем задержку для разных элементов
+        const delay = Array.from(element.parentNode.children).indexOf(element) * 100;
+        setTimeout(() => {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0) scale(1)';
+        }, delay);
+    }
+
+    // 🎮 INTERACTIVE ELEMENTS
+    setupInteractiveElements() {
+        // Анимация кнопок
+        const buttons = document.querySelectorAll('.cta-button, .nav-button');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => this.animateButtonHover(button));
+            button.addEventListener('mouseleave', () => this.animateButtonLeave(button));
+            button.addEventListener('mousedown', () => this.animateButtonPress(button));
+            button.addEventListener('mouseup', () => this.animateButtonRelease(button));
+        });
+
+        // Интерактивные карточки
+        const cards = document.querySelectorAll('.culture-card, .place-card, .food-card, .fact-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => this.animateCardHover(card));
+            card.addEventListener('mouseleave', () => this.animateCardLeave(card));
+            card.addEventListener('click', () => this.animateCardClick(card));
+        });
+
+        // Эффекты для изображений
+        this.setupImageHoverEffects();
+    }
+
+    // 🎪 BUTTON ANIMATIONS
+    animateButtonHover(button) {
+        button.style.transform = 'translateY(-3px) scale(1.05)';
+        button.style.boxShadow = '0 15px 30px rgba(198, 54, 60, 0.4)';
+    }
+
+    animateButtonLeave(button) {
+        button.style.transform = 'translateY(0) scale(1)';
+        button.style.boxShadow = '0 10px 25px rgba(198, 54, 60, 0.3)';
+    }
+
+    animateButtonPress(button) {
+        button.style.transform = 'translateY(2px) scale(0.95)';
+    }
+
+    animateButtonRelease(button) {
+        button.style.transform = 'translateY(-3px) scale(1.05)';
+    }
+
+    animateButtonClick(button) {
+        button.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            button.style.transform = 'scale(1)';
+        }, 150);
+    }
+
+    // 🃏 CARD ANIMATIONS
+    animateCardHover(card) {
+        card.style.transform = 'translateY(-15px) scale(1.03) rotateY(5deg)';
+        card.style.zIndex = '100';
+    }
+
+    animateCardLeave(card) {
+        card.style.transform = 'translateY(-5px) scale(1) rotateY(0)';
+        card.style.zIndex = '';
+    }
+
+    animateCardClick(card) {
+        this.animateElement(card, 'pulse');
+    }
+
+    // 🖼️ IMAGE EFFECTS
+    setupImageHoverEffects() {
+        const images = document.querySelectorAll('.image-container');
+        
+        images.forEach(container => {
+            const img = container.querySelector('img');
+            
+            container.addEventListener('mouseenter', () => {
+                container.style.transform = 'translateY(-10px) scale(1.02)';
+                if (img) {
+                    img.style.transform = 'scale(1.1) rotate(1deg)';
+                }
+            });
+            
+            container.addEventListener('mouseleave', () => {
+                container.style.transform = 'translateY(0) scale(1)';
+                if (img) {
+                    img.style.transform = 'scale(1) rotate(0)';
+                }
+            });
+        });
+    }
+
+    setupImageEffects() {
+        // Lazy loading с анимацией
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        img.classList.remove('lazy');
+                        
+                        // Анимация появления
+                        setTimeout(() => {
+                            img.style.opacity = '1';
+                            img.style.transform = 'scale(1)';
+                        }, 200);
+                        
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                img.style.opacity = '0';
+                img.style.transform = 'scale(1.1)';
+                img.style.transition = 'all 0.6s ease';
+                imageObserver.observe(img);
+            });
+        }
+    }
+
+    // 🏔️ HERO ANIMATIONS
+    animateHero() {
+        const hero = document.querySelector('.hero');
+        const heroTitle = document.querySelector('.hero-title');
+        const heroSubtitle = document.querySelector('.hero-subtitle');
+        const heroStats = document.querySelectorAll('.hero-stat');
+        const heroActions = document.querySelector('.hero-actions');
+
+        if (hero) {
+            // Анимация появления элементов с задержкой
+            setTimeout(() => {
+                heroTitle.style.opacity = '1';
+                heroTitle.style.transform = 'translateY(0)';
+            }, 500);
+
+            setTimeout(() => {
+                heroSubtitle.style.opacity = '1';
+                heroSubtitle.style.transform = 'translateY(0)';
+            }, 1000);
+
+            heroStats.forEach((stat, index) => {
+                setTimeout(() => {
+                    stat.style.opacity = '1';
+                    stat.style.transform = 'translateY(0)';
+                }, 1500 + index * 200);
+            });
+
+            setTimeout(() => {
+                heroActions.style.opacity = '1';
+                heroActions.style.transform = 'translateY(0)';
+            }, 2200);
+        }
+    }
+
+    // 📊 ANIMATED COUNTERS
+    setupCounters() {
+        const counters = document.querySelectorAll('[data-count]');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+    }
+
+    animateCounter(element) {
+        const target = parseInt(element.dataset.count);
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+
+        const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            element.textContent = Math.round(current).toLocaleString();
+        }, 16);
+    }
+
+    // 🎠 PARALLAX EFFECTS
+    setupParallax() {
+        this.hero = document.querySelector('.hero');
+        this.parallaxElements = document.querySelectorAll('[data-parallax]');
+    }
+
+    handleParallax = () => {
+        const scrolled = window.pageYOffset;
+        
+        // Параллакс для героя
+        if (this.hero) {
+            const speed = 0.5;
+            this.hero.style.transform = `translateY(${scrolled * speed}px)`;
+        }
+
+        // Параллакс для других элементов
+        this.parallaxElements.forEach(element => {
+            const speed = element.dataset.parallaxSpeed || 0.3;
+            const yPos = -(scrolled * speed);
+            element.style.transform = `translateY(${yPos}px)`;
+        });
+    }
+
+    // 🏗️ HEADER EFFECTS
     setupHeaderEffects() {
-        this.header = document.querySelector('header');
+        this.header = document.getElementById('header');
     }
 
     handleHeaderScroll = () => {
@@ -105,218 +412,60 @@ class SerbiaWebsite {
             this.header.style.transform = 'translateY(0)';
         }
 
-        // Изменение фона хедера
+        // Изменение стилей хедера
         if (scrollTop > 100) {
-            this.header.style.background = 'rgba(10, 10, 10, 0.98)';
-            this.header.style.backdropFilter = 'blur(20px)';
+            this.header.classList.add('scrolled');
         } else {
-            this.header.style.background = 'rgba(10, 10, 10, 0.95)';
-            this.header.style.backdropFilter = 'blur(15px)';
+            this.header.classList.remove('scrolled');
         }
 
         this.lastScrollTop = scrollTop;
     }
 
-    // Кнопка "Наверх"
+    // ⬆️ BACK TO TOP
     setupBackToTop() {
-        this.backToTop = document.createElement('button');
-        this.backToTop.innerHTML = '<i class="fas fa-chevron-up"></i>';
-        this.backToTop.className = 'back-to-top';
-        this.backToTop.setAttribute('aria-label', 'Вернуться наверх');
-        
-        this.applyBackToTopStyles();
-        document.body.appendChild(this.backToTop);
-
-        this.backToTop.addEventListener('click', () => {
-            this.scrollToTop();
-        });
-
-        this.setupBackToTopHover();
-    }
-
-    applyBackToTopStyles() {
-        Object.assign(this.backToTop.style, {
-            position: 'fixed',
-            bottom: '30px',
-            right: '30px',
-            width: '50px',
-            height: '50px',
-            background: 'linear-gradient(135deg, var(--serbia-red), var(--gold-accent))',
-            border: 'none',
-            borderRadius: '50%',
-            color: 'var(--dark-bg)',
-            fontSize: '1.2rem',
-            cursor: 'pointer',
-            boxShadow: '0 0 20px rgba(198, 54, 60, 0.5)',
-            transition: 'all 0.3s ease',
-            zIndex: '1000',
-            display: 'none',
-            alignItems: 'center',
-            justifyContent: 'center',
-            opacity: '0',
-            transform: 'scale(0.8)'
-        });
-    }
-
-    setupBackToTopHover() {
-        this.backToTop.addEventListener('mouseenter', () => {
-            this.backToTop.style.transform = 'translateY(-5px) scale(1.1)';
-            this.backToTop.style.boxShadow = '0 0 30px rgba(198, 54, 60, 0.8)';
-        });
-
-        this.backToTop.addEventListener('mouseleave', () => {
-            this.backToTop.style.transform = 'translateY(0) scale(1)';
-            this.backToTop.style.boxShadow = '0 0 20px rgba(198, 54, 60, 0.5)';
-        });
+        this.backToTop = document.getElementById('backToTop');
     }
 
     toggleBackToTop = () => {
         const shouldShow = window.pageYOffset > 300;
         
         if (shouldShow) {
-            this.backToTop.style.display = 'flex';
-            setTimeout(() => {
-                this.backToTop.style.opacity = '1';
-                this.backToTop.style.transform = 'scale(1)';
-            }, 10);
+            this.backToTop.classList.add('show');
+            this.backToTop.style.opacity = '1';
+            this.backToTop.style.transform = 'scale(1)';
         } else {
             this.backToTop.style.opacity = '0';
             this.backToTop.style.transform = 'scale(0.8)';
             setTimeout(() => {
                 if (window.pageYOffset <= 300) {
-                    this.backToTop.style.display = 'none';
+                    this.backToTop.classList.remove('show');
                 }
             }, 300);
         }
     }
 
-    scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-
-    // Анимации карточек
-    setupCardAnimations() {
-        this.cards = document.querySelectorAll('.culture-card, .place-card, .food-card, .fact-card, .stat-card');
-        
-        this.cards.forEach(card => {
-            card.addEventListener('mouseenter', this.handleCardHover);
-            card.addEventListener('mouseleave', this.handleCardLeave);
-        });
-    }
-
-    handleCardHover = (e) => {
-        const card = e.currentTarget;
-        card.style.transform = 'translateY(-10px) scale(1.02)';
-        card.style.zIndex = '10';
-    }
-
-    handleCardLeave = (e) => {
-        const card = e.currentTarget;
-        card.style.transform = 'translateY(-5px) scale(1)';
-        card.style.zIndex = '';
-    }
-
-    // Анимации при скролле
-    setupScrollAnimations() {
-        this.fadeElements = document.querySelectorAll('.culture-card, .place-card, .food-card, .fact-card, .stat-card, .price-category');
-        
-        this.fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-visible');
-                }
-            });
-        }, { 
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        this.fadeElements.forEach(element => {
-            element.classList.add('fade-in-hidden');
-            this.fadeObserver.observe(element);
-        });
-    }
-
-    // Параллакс эффект
-    setupParallax() {
-        this.hero = document.querySelector('.hero');
-    }
-
-    handleParallax = () => {
-        if (!this.hero) return;
-        
-        const scrolled = window.pageYOffset;
-        const parallaxSpeed = 0.5;
-        this.hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
-    }
-
-    // Ленивая загрузка изображений
-    setupImageLazyLoading() {
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
-                        imageObserver.unobserve(img);
-                    }
-                });
-            });
-
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                imageObserver.observe(img);
+    // 🎨 THEME TOGGLE
+    setupThemeToggle() {
+        this.themeToggle = document.getElementById('themeToggle');
+        if (this.themeToggle) {
+            this.themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('light-theme');
+                this.animateElement(this.themeToggle, 'spin');
             });
         }
     }
 
-    // Интерактивные элементы
-    setupInteractiveElements() {
-        // Анимация клика по кнопкам
-        const buttons = document.querySelectorAll('.cta-button, .pearl-button');
-        buttons.forEach(button => {
-            button.addEventListener('click', this.handleButtonClick);
-            button.addEventListener('mousedown', this.handleButtonPress);
-            button.addEventListener('mouseup', this.handleButtonRelease);
-            button.addEventListener('mouseleave', this.handleButtonRelease);
-        });
-
-        // Интерактивные статистические карточки
-        this.setupStatsInteractions();
-    }
-
-    handleButtonClick = (e) => {
-        const button = e.currentTarget;
-        button.style.transform = 'scale(0.95)';
-        
+    // 🎪 UTILITY ANIMATIONS
+    animateElement(element, animationType) {
+        element.classList.add(`animate-${animationType}`);
         setTimeout(() => {
-            button.style.transform = '';
-        }, 150);
+            element.classList.remove(`animate-${animationType}`);
+        }, 600);
     }
 
-    handleButtonPress = (e) => {
-        e.currentTarget.style.transform = 'scale(0.95)';
-    }
-
-    handleButtonRelease = (e) => {
-        e.currentTarget.style.transform = '';
-    }
-
-    setupStatsInteractions() {
-        const statCards = document.querySelectorAll('.stat-card');
-        
-        statCards.forEach(card => {
-            card.addEventListener('click', () => {
-                card.classList.toggle('stat-expanded');
-            });
-        });
-    }
-
-    // Оптимизации производительности
-    setupPerformanceOptimizations() {
+    // ⚡ PERFORMANCE OPTIMIZATIONS
+    setupPerformance() {
         this.debouncedScroll = this.debounce(() => {
             this.handleScrollActions();
         }, 10);
@@ -327,38 +476,12 @@ class SerbiaWebsite {
     }
 
     handleScrollActions() {
-        this.updateActiveSection();
+        this.updateActiveNavigation();
         this.handleHeaderScroll();
         this.toggleBackToTop();
     }
 
-    // Привязка событий
-    bindEvents() {
-        window.addEventListener('scroll', () => {
-            this.debouncedScroll();
-            this.throttledParallax();
-        });
-
-        window.addEventListener('resize', this.debounce(() => {
-            this.updateActiveSection();
-        }, 250));
-
-        // Предзагрузка критичных ресурсов
-        window.addEventListener('load', () => {
-            this.preloadImportantImages();
-        });
-
-        // Управление видимостью страницы
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                this.pauseAnimations();
-            } else {
-                this.resumeAnimations();
-            }
-        });
-    }
-
-    // Вспомогательные функции
+    // 🛠️ UTILITY FUNCTIONS
     debounce(func, wait, immediate = false) {
         let timeout;
         return function executedFunction(...args) {
@@ -384,16 +507,45 @@ class SerbiaWebsite {
         };
     }
 
-    // Дополнительные функции
-    preloadImportantImages() {
-        const importantImages = [
-            'images/serbia-main.jpg',
-            'images/belgrade-fortress.jpg'
-        ];
+    // 📡 EVENT BINDING
+    bindEvents() {
+        // Оптимизированные слушатели скролла
+        window.addEventListener('scroll', () => {
+            this.debouncedScroll();
+            this.throttledParallax();
+        });
 
-        importantImages.forEach(src => {
-            const img = new Image();
-            img.src = src;
+        window.addEventListener('resize', this.debounce(() => {
+            this.updateActiveNavigation();
+        }, 250));
+
+        // Back to top click
+        if (this.backToTop) {
+            this.backToTop.addEventListener('click', () => {
+                this.scrollToTop();
+                this.animateElement(this.backToTop, 'bounce');
+            });
+        }
+
+        // Page visibility
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.pauseAnimations();
+            } else {
+                this.resumeAnimations();
+            }
+        });
+
+        // Preload critical images
+        window.addEventListener('load', () => {
+            this.preloadImportantImages();
+        });
+    }
+
+    scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
     }
 
@@ -405,129 +557,64 @@ class SerbiaWebsite {
         document.body.style.animationPlayState = 'running';
     }
 
-    // Анимация счетчиков (если понадобится)
-    animateCounter(element, start, end, duration) {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            const value = Math.floor(progress * (end - start) + start);
-            element.textContent = value.toLocaleString();
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
-        };
-        window.requestAnimationFrame(step);
-    }
+    preloadImportantImages() {
+        const importantImages = [
+            'images/serbia-main.jpg',
+            'images/belgrade-fortress.jpg',
+            'images/culture-music.jpg'
+        ];
 
-    // Анимация текста (дополнительная функция)
-    typeWriter(element, text, speed = 50) {
-        let i = 0;
-        element.innerHTML = '';
-        
-        const timer = setInterval(() => {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
-            } else {
-                clearInterval(timer);
-            }
-        }, speed);
+        importantImages.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
     }
 }
 
-// Добавляем CSS стили для анимаций
-function injectStyles() {
-    const styles = `
-        /* Анимации появления */
-        .fade-in-hidden {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+// 🚀 INITIALIZATION
+document.addEventListener('DOMContentLoaded', () => {
+    // Inject additional styles
+    const additionalStyles = `
+        .animate-pulse {
+            animation: pulse 0.6s ease-in-out;
         }
-        
-        .fade-in-visible {
-            opacity: 1;
-            transform: translateY(0);
+        .animate-bounce {
+            animation: bounce 0.6s ease-in-out;
         }
-        
-        /* Анимация кнопки "Наверх" */
-        .back-to-top {
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        .animate-spin {
+            animation: spin 0.6s ease-in-out;
         }
-        
-        .back-to-top:hover {
-            animation: bounce 0.5s ease;
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0) scale(1.1);
-            }
-            40% {
-                transform: translateY(-5px) scale(1.1);
-            }
-            60% {
-                transform: translateY(-2px) scale(1.1);
-            }
-        }
-        
-        /* Плавные переходы для карточек */
-        .culture-card,
-        .place-card, 
-        .food-card,
-        .fact-card,
-        .stat-card,
-        .price-category {
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-        }
-        
-        /* Анимация для расширенных статистических карточек */
-        .stat-expanded {
-            transform: scale(1.05) !important;
-            z-index: 20 !important;
-        }
-        
-        /* Оптимизация анимаций */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        
-        /* Стили для ленивой загрузки */
-        img.lazy {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        img.lazy-loaded {
-            opacity: 1;
+        .light-theme {
+            --dark-bg: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
         }
     `;
     
     const styleSheet = document.createElement('style');
-    styleSheet.textContent = styles;
+    styleSheet.textContent = additionalStyles;
     document.head.appendChild(styleSheet);
-}
 
-// Инициализация при загрузке DOM
-document.addEventListener('DOMContentLoaded', () => {
-    // Внедряем стили
-    injectStyles();
-    
-    // Инициализируем основное приложение
-    new SerbiaWebsite();
-    
-    // Добавляем обработчик ошибок
-    window.addEventListener('error', (e) => {
-        console.error('Ошибка на сайте:', e.error);
-    });
+    // Initialize the main application
+    new SerbiaExplorer();
 });
 
-// Экспорт для использования в других модулях (если нужно)
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = SerbiaWebsite;
+// 🎯 ERROR HANDLING
+window.addEventListener('error', (e) => {
+    console.error('SerbiaExplorer Error:', e.error);
+});
+
+// 📊 PERFORMANCE MONITORING
+if ('performance' in window) {
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const perfData = performance.timing;
+            const loadTime = perfData.loadEventEnd - perfData.navigationStart;
+            console.log(`Page loaded in ${loadTime}ms`);
+        }, 0);
+    });
 }
