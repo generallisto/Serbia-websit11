@@ -1,0 +1,757 @@
+/* style.css - Улучшенная темная тема с сербской цветовой палитрой */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 50%, #2a1e1e 100%);
+    background-attachment: fixed;
+    color: #f0f0f0;
+    line-height: 1.6;
+    overflow-x: hidden;
+    font-weight: 400;
+}
+
+/* НОВАЯ ЦВЕТОВАЯ ПАЛИТРА СЕРБИИ */
+:root {
+    --serbia-red: #c6363c;
+    --serbia-blue: #0c4076;
+    --serbia-white: #f5f5f5;
+    --gold-accent: #d4af37;
+    --dark-bg: #0c0c0c;
+    --medium-bg: #1a1a1a;
+    --light-bg: #2a2a2a;
+    --card-bg: linear-gradient(135deg, #1a1a1a 0%, #242424 100%);
+    --text-primary: #f0f0f0;
+    --text-secondary: #b0b0b0;
+}
+
+/* Анимации */
+@keyframes pulse-gold {
+    0%, 100% { 
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    }
+    50% { 
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.7), 0 0 35px rgba(212, 175, 55, 0.3);
+    }
+}
+
+@keyframes glow {
+    0%, 100% { 
+        filter: drop-shadow(0 0 5px rgba(198, 54, 60, 0.3));
+    }
+    50% { 
+        filter: drop-shadow(0 0 15px rgba(198, 54, 60, 0.5));
+    }
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0px); 
+    }
+    50% { 
+        transform: translateY(-8px); 
+    }
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ОПТИМИЗАЦИЯ ИЗОБРАЖЕНИЙ */
+.about-image,
+.place-image,
+.feature-image,
+.food-image,
+.culture-image {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease;
+    position: relative;
+    height: 400px;
+}
+
+.place-image { height: 280px; }
+.feature-image { height: 220px; }
+.food-image { height: 220px; }
+.culture-image { height: 200px; }
+
+.responsive-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+}
+
+/* Эффекты при наведении */
+.about-image:hover,
+.place-image:hover,
+.feature-image:hover,
+.food-image:hover,
+.culture-image:hover {
+    transform: translateY(-5px);
+    border-color: var(--serbia-red);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(198, 54, 60, 0.2);
+}
+
+.about-image:hover img,
+.place-image:hover img,
+.feature-image:hover img,
+.food-image:hover img,
+.culture-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Боковое меню */
+.side-nav {
+    position: fixed;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--text-secondary);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.nav-dot.active {
+    background: var(--serbia-red);
+    transform: scale(1.4);
+    box-shadow: 0 0 15px var(--serbia-red);
+}
+
+.nav-dot:hover {
+    transform: scale(1.6);
+    background: var(--gold-accent);
+    box-shadow: 0 0 20px var(--gold-accent);
+}
+
+/* Header */
+header {
+    background: rgba(12, 12, 12, 0.95) !important;
+    backdrop-filter: blur(15px);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(198, 54, 60, 0.2);
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 0;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--serbia-red) 0%, var(--gold-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+    font-family: 'Playfair Display', serif;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--serbia-red), var(--gold-accent));
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+    background: linear-gradient(-45deg, #0c0c0c, #1a1a1a, #2a1e1e, #1c0c0c);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(198, 54, 60, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(12, 64, 118, 0.15) 0%, transparent 50%);
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--serbia-white) 0%, var(--gold-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    font-family: 'Playfair Display', serif;
+    animation: float 6s ease-in-out infinite;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 3rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* НОВЫЕ ПЕРЛАМУТРОВЫЕ КНОПКИ */
+.cta-button {
+    --white: #fff8e1;
+    --bg: #1a1a1a;
+    --radius: 50px;
+    outline: none;
+    cursor: pointer;
+    border: 0;
+    position: relative;
+    border-radius: var(--radius);
+    background-color: var(--bg);
+    transition: all 0.2s ease;
+    box-shadow:
+        inset 0 0.3rem 0.9rem rgba(255, 255, 255, 0.2),
+        inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
+        inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.3),
+        0 3rem 3rem rgba(0, 0, 0, 0.3),
+        0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    animation: float 4s ease-in-out infinite;
+}
+
+.cta-button .wrap {
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 20px 35px;
+    border-radius: inherit;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cta-button .wrap p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    transition: all 0.2s ease;
+    transform: translateY(2%);
+}
+
+.cta-button .wrap::before,
+.cta-button .wrap::after {
+    content: "";
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.cta-button .wrap::before {
+    left: -15%;
+    right: -15%;
+    bottom: 25%;
+    top: -100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(198, 54, 60, 0.15) 0%, transparent 70%);
+}
+
+.cta-button .wrap::after {
+    left: 6%;
+    right: 6%;
+    top: 12%;
+    bottom: 40%;
+    border-radius: 22px 22px 0 0;
+    box-shadow: inset 0 10px 8px -10px rgba(255, 255, 255, 0.4);
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0) 100%
+    );
+}
+
+.cta-button:hover {
+    box-shadow:
+        inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.3),
+        inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
+        inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.4),
+        0 3rem 3rem rgba(0, 0, 0, 0.3),
+        0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
+    transform: translateY(-3px);
+}
+
+.cta-button:hover .wrap::before {
+    transform: translateY(-5%);
+}
+
+.cta-button:hover .wrap::after {
+    opacity: 0.4;
+    transform: translateY(5%);
+}
+
+.cta-button:hover .wrap p {
+    transform: translateY(-4%);
+}
+
+.cta-button:active {
+    transform: translateY(2px);
+    box-shadow:
+        inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.4),
+        inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.8),
+        inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.3),
+        0 2rem 2rem rgba(0, 0, 0, 0.3),
+        0 0.5rem 0.5rem -0.3rem rgba(0, 0, 0, 0.8);
+}
+
+/* Sections */
+section {
+    padding: 100px 0;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    font-family: 'Playfair Display', serif;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 25%;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--serbia-red), var(--gold-accent), transparent);
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+}
+
+/* About Section */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--serbia-red);
+    box-shadow: 0 10px 25px rgba(198, 54, 60, 0.2);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold-accent);
+    margin-bottom: 0.5rem;
+}
+
+/* Culture Section */
+.culture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.culture-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.culture-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--serbia-red);
+    box-shadow: 0 15px 35px rgba(198, 54, 60, 0.15);
+}
+
+.culture-content {
+    padding: 1.5rem;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.culture-content i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--serbia-red) 0%, var(--gold-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Places Section */
+.places-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.place-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.place-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--serbia-red);
+    box-shadow: 0 15px 35px rgba(198, 54, 60, 0.15);
+}
+
+.place-card-content {
+    padding: 1.5rem;
+}
+
+.place-meta {
+    font-size: 0.85rem;
+    color: var(--gold-accent);
+    font-weight: 500;
+}
+
+/* Prices Section */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.price-category {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+}
+
+.price-category:hover {
+    transform: translateY(-5px);
+    border-color: var(--serbia-red);
+}
+
+.price-category h3 {
+    color: var(--gold-accent);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.price-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(198, 54, 60, 0.2);
+    transform: translateX(5px);
+}
+
+.price-rsd {
+    font-weight: 600;
+    color: var(--gold-accent);
+    font-size: 1rem;
+}
+
+/* Food Section */
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.food-card {
+    background: transparent;
+    padding: 0;
+    border-radius: 16px;
+    text-align: center;
+    border: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.food-card:hover {
+    background: transparent;
+    transform: translateY(-8px);
+}
+
+.food-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem 0;
+    color: var(--text-primary);
+}
+
+.price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gold-accent);
+    margin-bottom: 0.25rem;
+}
+
+/* Facts Section */
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.fact-card {
+    background: var(--card-bg);
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.fact-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--serbia-red);
+    box-shadow: 0 15px 35px rgba(198, 54, 60, 0.1);
+}
+
+.fact-card i {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--serbia-red) 0%, var(--gold-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Footer */
+footer {
+    background: var(--dark-bg);
+    padding: 4rem 0 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid rgba(198, 54, 60, 0.2);
+    position: relative;
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--serbia-red) 0%, var(--gold-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .side-nav {
+        display: none;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .places-grid,
+    .culture-grid,
+    .food-grid,
+    .facts-grid,
+    .bajina-features,
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-image {
+        height: 300px;
+    }
+    
+    .place-image {
+        height: 220px;
+    }
+    
+    .feature-image {
+        height: 180px;
+    }
+    
+    .food-image {
+        height: 180px;
+    }
+    
+    .culture-image {
+        height: 180px;
+    }
+    
+    .hero {
+        padding-top: 100px;
+    }
+    
+    section {
+        padding: 80px 0;
+    }
+    
+    .cta-button .wrap {
+        padding: 15px 25px;
+        font-size: 16px;
+    }
+}
