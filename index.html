@@ -1,482 +1,482 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сербия - Жемчужина Балкан | Путеводитель 2024</title>
-    <meta name="description" content="Полный путеводитель по Сербии: культура, достопримечательности, цены, кухня и многое другое. Откройте для себя страну с богатой историей и гостеприимными людьми.">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Сербия — Жемчужина Балкан</title>
+    <meta name="description" content="Полный гид по Сербии: история, достопримечательности, кухня, цены, транспорт и советы для туристов." />
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preload" as="image" href="images/serbia-main.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="" crossorigin="anonymous">
+    <!-- JSON-LD для поисковых систем -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Country",
+      "name": "Сербия",
+      "description": "Сербия — страна с богатой историей и культурой на Балканах. Путеводитель по основным достопримечательностям, кухне и практическим советам.",
+      "url": "",
+      "image": "images/serbia-main.jpg"
+    }
+    </script>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading" id="loading">
-        <div class="loading-content">
-            <div class="loading-logo">🇷🇸</div>
-            <div class="loading-text">Сербия</div>
-            <div class="loading-subtitle">Жемчужина Балкан</div>
-        </div>
-    </div>
+    <!-- HEADER -->
+    <header>
+        <nav class="container" role="navigation" aria-label="Главная навигация">
+            <div class="logo" aria-hidden="false">🇷🇸 Сербия</div>
 
-    <!-- Particles Background -->
-    <div class="particles" id="particles"></div>
+            <button id="mobile-nav-toggle" aria-controls="primary-nav" aria-expanded="false" style="display:none;">
+                <i class="fas fa-bars"></i>
+            </button>
 
-    <!-- Боковое меню навигации -->
-    <div class="side-nav">
-        <div class="nav-dot active" data-section="about" data-tooltip="О Сербии"></div>
-        <div class="nav-dot" data-section="culture" data-tooltip="Культура"></div>
-        <div class="nav-dot" data-section="places" data-tooltip="Достопримечательности"></div>
-        <div class="nav-dot" data-section="bajina-basta" data-tooltip="Байина Башта"></div>
-        <div class="nav-dot" data-section="prices" data-tooltip="Цены"></div>
-        <div class="nav-dot" data-section="food" data-tooltip="Кухня"></div>
-        <div class="nav-dot" data-section="facts" data-tooltip="Факты"></div>
-    </div>
-
-    <!-- Header -->
-    <header id="header">
-        <nav class="container">
-            <div class="logo">
-                <span class="logo-icon">🇷🇸</span>
-                Сербия
-            </div>
-            <ul class="nav-links">
-                <li><a href="#about" class="nav-link">О стране</a></li>
-                <li><a href="#culture" class="nav-link">Культура</a></li>
-                <li><a href="#places" class="nav-link">Достопримечательности</a></li>
-                <li><a href="#bajina-basta" class="nav-link">Байина Башта</a></li>
-                <li><a href="#prices" class="nav-link">Цены</a></li>
-                <li><a href="#food" class="nav-link">Кухня</a></li>
-                <li><a href="#facts" class="nav-link">Факты</a></li>
+            <ul class="nav-links" id="primary-nav">
+                <li><a href="#about">О стране</a></li>
+                <li><a href="#history">История</a></li>
+                <li><a href="#culture">Культура</a></li>
+                <li><a href="#places">Достопримечательности</a></li>
+                <li><a href="#transport">Транспорт</a></li>
+                <li><a href="#prices">Цены</a></li>
+                <li><a href="#food">Кухня</a></li>
+                <li><a href="#tips">Советы</a></li>
+                <li><a href="#facts">Факты</a></li>
             </ul>
-            <div class="nav-actions">
-                <button class="nav-button" id="themeToggle">
-                    <i class="fas fa-palette"></i>
-                </button>
-            </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-background">
-            <div class="hero-overlay"></div>
-        </div>
-        <div class="container">
+    <!-- SIDE NAV (точки) -->
+    <div class="side-nav" aria-hidden="false">
+        <div class="nav-dot active" data-section="about" title="О Сербии" role="button" tabindex="0" aria-label="О Сербии"></div>
+        <div class="nav-dot" data-section="history" title="История" role="button" tabindex="0" aria-label="История"></div>
+        <div class="nav-dot" data-section="culture" title="Культура" role="button" tabindex="0" aria-label="Культура"></div>
+        <div class="nav-dot" data-section="places" title="Достопримечательности" role="button" tabindex="0" aria-label="Достопримечательности"></div>
+        <div class="nav-dot" data-section="transport" title="Транспорт" role="button" tabindex="0" aria-label="Транспорт"></div>
+        <div class="nav-dot" data-section="prices" title="Цены" role="button" tabindex="0" aria-label="Цены"></div>
+        <div class="nav-dot" data-section="food" title="Кухня" role="button" tabindex="0" aria-label="Кухня"></div>
+        <div class="nav-dot" data-section="tips" title="Советы" role="button" tabindex="0" aria-label="Советы"></div>
+        <div class="nav-dot" data-section="facts" title="Факты" role="button" tabindex="0" aria-label="Факты"></div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero" aria-label="Главный экран">
+        <div class="container hero-inner">
             <div class="hero-content">
-                <h1 class="hero-title">
-                    Сербия
-                    <span class="hero-flag">🇷🇸</span>
-                </h1>
-                <p class="hero-subtitle">Страна с богатой историей, гостеприимными людьми и неповторимой атмосферой, где встречаются Восток и Запад</p>
-                
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <div class="stat-number">1150+</div>
-                        <div class="stat-label">Лет истории</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="stat-number">8.7M</div>
-                        <div class="stat-label">Население</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="stat-number">5</div>
-                        <div class="stat-label">Объектов ЮНЕСКО</div>
-                    </div>
+                <h1 class="neon">Сербия</h1>
+                <p class="lead">Страна с богатой историей, гостеприимными людьми и неповторимой атмосферой — исследуй Балканы как местный.</p>
+                <div class="hero-cta">
+                    <a href="#about" class="cta-button"><i class="fas fa-compass"></i> Исследовать Сербию</a>
+                    <a href="#places" class="cta-button ghost"><i class="fas fa-map"></i> Лучшие места</a>
                 </div>
+            </div>
 
-                <div class="hero-actions">
-                    <a href="#about" class="cta-button primary">
-                        <i class="fas fa-compass"></i>
-                        <span>Исследовать Сербию</span>
-                        <div class="button-glow"></div>
-                    </a>
-                    <a href="#places" class="cta-button secondary">
-                        <i class="fas fa-map-marked-alt"></i>
-                        <span>Топ достопримечательности</span>
-                    </a>
-                </div>
-
-                <div class="scroll-indicator">
-                    <div class="scroll-arrow"></div>
-                    <span>Листайте вниз</span>
-                </div>
+            <!-- decorative floating elements -->
+            <div class="hero-floating" aria-hidden="true">
+                <div class="float glow-small" style="top:10%; left:15%;"></div>
+                <div class="float glow-medium" style="top:30%; right:10%;"></div>
+                <div class="float glow-large" style="bottom:10%; left:45%;"></div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section">
+    <!-- ABOUT (с Историей внутри как краткий блок, расширенная история ниже) -->
+    <section id="about" class="fade-in-section">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">О Сербии</h2>
-                <p class="section-subtitle">Узнайте о стране, где встречаются Восток и Запад, создавая уникальную атмосферу гостеприимства и радушия</p>
-            </div>
+            <h2 class="section-title">О Сербии</h2>
+            <p class="section-subtitle">Где встречаются Восток и Запад — природа, города и люди</p>
 
             <div class="about-content">
                 <div class="about-text">
-                    <div class="about-intro">
-                        <p class="lead">Сербия — удивительная страна в самом сердце Балкан, где переплетаются восточная и западная культуры, создавая уникальную атмосферу гостеприимства и радушия.</p>
-                    </div>
-
-                    <div class="about-features">
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-landmark"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h3>Столица Белград</h3>
-                                <p>Один из старейших городов Европы, стоящий на слиянии рек Савы и Дуная. Город с богатой историей, бурной ночной жизнью и неповторимым шармом.</p>
-                            </div>
-                        </div>
-
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-mountain"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h3>Горные пейзажи</h3>
-                                <p>Почти 70% территории Сербии — холмы и горы. Самые известные хребты: Копаоник, Тара и Златибор с целебным воздухом.</p>
-                            </div>
-                        </div>
-
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-heart"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h3>Гостеприимство</h3>
-                                <p>Сербы известны своим радушием. "Гость в дом — Бог в дом" — эта пословица точно отражает сербское отношение к гостям.</p>
-                            </div>
-                        </div>
-                    </div>
+                    <p>Сербия — страна в самом сердце Балкан с живой культурой, архитектурой и природой. Белград, Нови-Сад и Ниш — лишь часть многообразия городов, а горы Копаоник, Тара и Златибор предлагают отличные маршруты для активного отдыха.</p>
+                    <p><strong>Столица:</strong> Белград — город на слиянии Савы и Дуная, с оживлённой культурной жизнью и историей нескольких тысяч лет.</p>
 
                     <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-number" data-count="8.7">0</div>
-                            <div class="stat-label">Млн населения</div>
+                        <div class="stat-card stat-animated">
+                            <div class="stat-number" data-target="8700000">8.7M</div>
+                            <div class="stat-label">Население</div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-number" data-count="88">0</div>
-                            <div class="stat-label">Тыс. км² территории</div>
+                        <div class="stat-card stat-animated">
+                            <div class="stat-number" data-target="88000">88K км²</div>
+                            <div class="stat-label">Территория</div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-number" data-count="1150">0</div>
-                            <div class="stat-label">+ Лет истории</div>
+                        <div class="stat-card stat-animated">
+                            <div class="stat-number" data-target="1150">1150+</div>
+                            <div class="stat-label">Лет истории</div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-number" data-count="5">0</div>
+                        <div class="stat-card stat-animated">
+                            <div class="stat-number" data-target="5">5</div>
                             <div class="stat-label">Объектов ЮНЕСКО</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="about-visual">
-                    <div class="image-container about-image">
-                        <img src="images/serbia-main.jpg" alt="Сербия - Белград" class="responsive-image" loading="lazy">
-                        <div class="image-overlay">
-                            <div class="image-caption">Белград - столица Сербии</div>
-                            <div class="image-badge">
-                                <i class="fas fa-star"></i>
-                                <span>Слияние Савы и Дуная</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <aside class="about-image" aria-hidden="false">
+                    <img src="images/serbia-main.jpg" alt="Панорама Белграда" class="responsive-image" loading="lazy" decoding="async">
+                    <div class="image-caption">Белград — сердце Сербии</div>
+                </aside>
             </div>
         </div>
     </section>
 
-    <!-- Culture Section -->
-    <section id="culture" class="section">
+    <!-- HISTORY (развёрнутая) -->
+    <section id="history" class="fade-in-section">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Культура и традиции</h2>
-                <p class="section-subtitle">Богатое наследие и уникальные обычаи сербского народа, сохраняемые веками</p>
+            <h2 class="section-title">История Сербии</h2>
+            <p class="section-subtitle">Краткий таймлайн ключевых событий</p>
+
+            <div class="timeline" aria-hidden="false">
+                <div class="timeline-item">
+                    <div class="timeline-year">IX–XII вв.</div>
+                    <div class="timeline-content">
+                        <h4>Раннее средневековье</h4>
+                        <p>Формирование сербских княжеств, крещение и начало формирования государственности.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">XII–XIV вв.</div>
+                    <div class="timeline-content">
+                        <h4>Династия Неманичей</h4>
+                        <p>Золотой век сербского средневековья — строительство монастырей и расцвет культуры.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">XIX век</div>
+                    <div class="timeline-content">
+                        <h4>Освобождение и современное государство</h4>
+                        <p>Национальное возрождение, автономия и становление современной Сербии.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">XX век</div>
+                    <div class="timeline-content">
+                        <h4>Вызовы и изменения</h4>
+                        <p>Периоды войн, перестроек и переходов — Сербия в составе разных государственных образований.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">XXI век</div>
+                    <div class="timeline-content">
+                        <h4>Современная Сербия</h4>
+                        <p>Развитие туризма, IT-сектора и международных связей. Новые культурные фестивали и старые традиции.</p>
+                    </div>
+                </div>
             </div>
+
+            <p style="margin-top:1.5rem; color:#b0b0b0">
+                Маленькие истории: монастыри Студеница и Жича сохранили уникальные фрески, а в Белграде можно найти следы римских и османских эпох на каждом шагу.
+            </p>
+        </div>
+    </section>
+
+    <!-- CULTURE -->
+    <section id="culture" class="fade-in-section">
+        <div class="container">
+            <h2 class="section-title">Культура и традиции</h2>
+            <p class="section-subtitle">Музыка, танцы, фестивали и гостеприимство</p>
 
             <div class="culture-grid">
-                <!-- Music Card -->
-                <div class="culture-card">
-                    <div class="culture-image image-container">
-                        <img src="images/culture-music.jpg" alt="Сербская народная музыка" class="responsive-image" loading="lazy">
-                        <div class="culture-overlay">
-                            <div class="culture-badge">
-                                <i class="fas fa-music"></i>
-                                Музыка
-                            </div>
-                        </div>
-                    </div>
+                <article class="culture-card" aria-labelledby="culture-music">
+                    <div class="culture-image"><img src="images/culture-music.jpg" alt="Сербская музыка" loading="lazy"></div>
                     <div class="culture-content">
-                        <h3>Турбо-фолк и народные песни</h3>
-                        <p>Турбо-фолк и традиционные народные песни создают уникальный музыкальный ландшафт Сербии. От эпических гуслярских баллад до современной поп-музыки.</p>
-                        <ul class="culture-features">
-                            <li><i class="fas fa-guitar"></i> Народные инструменты</li>
-                            <li><i class="fas fa-microphone"></i> Современные хиты</li>
-                            <li><i class="fas fa-users"></i> Фестивали</li>
-                        </ul>
+                        <i class="fas fa-music" aria-hidden="true"></i>
+                        <h3 id="culture-music">Музыка</h3>
+                        <p>От традиционных баллад до современного фестивального звучания — музыка в Сербии отражает всё разнообразие региона.</p>
                     </div>
-                </div>
+                </article>
 
-                <!-- Dance Card -->
-                <div class="culture-card">
-                    <div class="culture-image image-container">
-                        <img src="images/culture-dance.jpg" alt="Сербский народный танец Коло" class="responsive-image" loading="lazy">
-                        <div class="culture-overlay">
-                            <div class="culture-badge">
-                                <i class="fas fa-dancing"></i>
-                                Танцы
-                            </div>
-                        </div>
-                    </div>
+                <article class="culture-card" aria-labelledby="culture-dance">
+                    <div class="culture-image"><img src="images/culture-dance.jpg" alt="Коло — сербский танец" loading="lazy"></div>
                     <div class="culture-content">
-                        <h3>Коло - круговой танец</h3>
-                        <p>Коло — традиционный круговой танец, символ единства и веселья на всех праздниках. Каждый регион имеет свои уникальные стили и костюмы.</p>
-                        <ul class="culture-features">
-                            <li><i class="fas fa-circle"></i> Круговой танец</li>
-                            <li><i class="fas fa-tshirt"></i> Национальные костюмы</li>
-                            <li><i class="fas fa-music"></i> Народные мелодии</li>
-                        </ul>
+                        <i class="fas fa-dancer" aria-hidden="true"></i>
+                        <h3 id="culture-dance">Танцы</h3>
+                        <p>Коло — круговой танец, где люди разных поколений объединяются под ритмы народной музыки.</p>
                     </div>
-                </div>
+                </article>
 
-                <!-- Festival Card -->
-                <div class="culture-card">
-                    <div class="culture-image image-container">
-                        <img src="images/culture-festival.jpg" alt="EXIT Festival в Нови-Саде" class="responsive-image" loading="lazy">
-                        <div class="culture-overlay">
-                            <div class="culture-badge">
-                                <i class="fas fa-glass-cheers"></i>
-                                Фестивали
-                            </div>
-                        </div>
-                    </div>
+                <article class="culture-card" aria-labelledby="culture-fest">
+                    <div class="culture-image"><img src="images/culture-festival.jpg" alt="EXIT Festival" loading="lazy"></div>
                     <div class="culture-content">
-                        <h3>EXIT и другие фестивали</h3>
-                        <p>EXIT Festival в Нови-Саде — один из лучших европейских музыкальных фестивалей, проводящийся в Петроварадинской крепости.</p>
-                        <ul class="culture-features">
-                            <li><i class="fas fa-star"></i> EXIT Festival</li>
-                            <li><i class="fas fa-trumpet"></i> Гусие</li>
-                            <li><i class="fas fa-beer"></i> BELGRADE BEER FEST</li>
-                        </ul>
+                        <i class="fas fa-glass-cheers" aria-hidden="true"></i>
+                        <h3 id="culture-fest">Фестивали</h3>
+                        <p>EXIT в Нови-Саде, BELGRADE BEER FEST и местные обряды — отличная причина планировать поездку под фестивальный сезон.</p>
                     </div>
-                </div>
+                </article>
 
-                <!-- Religion Card -->
-                <div class="culture-card">
-                    <div class="culture-image image-container">
-                        <img src="images/culture-religion.jpg" alt="Православный монастырь в Сербии" class="responsive-image" loading="lazy">
-                        <div class="culture-overlay">
-                            <div class="culture-badge">
-                                <i class="fas fa-church"></i>
-                                Религия
-                            </div>
-                        </div>
-                    </div>
+                <article class="culture-card" aria-labelledby="culture-religion">
+                    <div class="culture-image"><img src="images/culture-religion.jpg" alt="Православный монастырь" loading="lazy"></div>
                     <div class="culture-content">
-                        <h3>Православные монастыри</h3>
-                        <p>Православные монастыри с уникальными фресками XIII-XIV веков — культурное наследие ЮНЕСКО. Сербская Православная Церковь играет ключевую роль.</p>
-                        <ul class="culture-features">
-                            <li><i class="fas fa-history"></i> XIII-XIV века</li>
-                            <li><i class="fas fa-paint-brush"></i> Уникальные фрески</li>
-                            <li><i class="fas fa-unesco"></i> Наследие ЮНЕСКО</li>
-                        </ul>
+                        <i class="fas fa-church" aria-hidden="true"></i>
+                        <h3 id="culture-religion">Религия</h3>
+                        <p>Православные монастыри играют большую роль в культуре и служат сокровищницами древних фресок и манускриптов.</p>
                     </div>
-                </div>
-
-                <!-- Hospitality Card -->
-                <div class="culture-card">
-                    <div class="culture-image image-container">
-                        <img src="images/culture-hospitality.jpg" alt="Сербское гостеприимство" class="responsive-image" loading="lazy">
-                        <div class="culture-overlay">
-                            <div class="culture-badge">
-                                <i class="fas fa-handshake"></i>
-                                Гостеприимство
-                            </div>
-                        </div>
-                    </div>
-                    <div class="culture-content">
-                        <h3>Радушие и гостеприимство</h3>
-                        <p>Сербы известны своим радушием. Гостям всегда предлагают "ракию и слатко" — традиционное угощение из фруктовой водки и домашнего варенья.</p>
-                        <ul class="culture-features">
-                            <li><i class="fas fa-wine-bottle"></i> Ракия</li>
-                            <li><i class="fas fa-jar"></i> Слатко</li>
-                            <li><i class="fas fa-home"></i> Гость - как Бог</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Cuisine Card -->
-                <div class="culture-card">
-                    <div class="culture-image image-container">
-                        <img src="images/culture-cuisine.jpg" alt="Традиционная сербская кухня" class="responsive-image" loading="lazy">
-                        <div class="culture-overlay">
-                            <div class="culture-badge">
-                                <i class="fas fa-utensils"></i>
-                                Кухня
-                            </div>
-                        </div>
-                    </div>
-                    <div class="culture-content">
-                        <h3>Кулинарные традиции</h3>
-                        <p>Сербская кухня — смешение балканских, турецких и средиземноморских влияний. Особое место занимают мясные блюда на гриле и домашние сыры.</p>
-                        <ul class="culture-features">
-                            <li><i class="fas fa-drumstick-bite"></i> Мясные блюда</li>
-                            <li><i class="fas fa-cheese"></i> Домашние сыры</li>
-                            <li><i class="fas fa-blender"></i> Смешение культур</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-actions">
-                <a href="#places" class="cta-button primary">
-                    <i class="fas fa-arrow-right"></i>
-                    <span>Далее: Достопримечательности</span>
-                </a>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Places Section -->
-    <section id="places" class="section">
+    <!-- PLACES -->
+    <section id="places" class="fade-in-section">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Достопримечательности</h2>
-                <p class="section-subtitle">Откройте для себя самые красивые и исторически значимые места Сербии</p>
-            </div>
+            <h2 class="section-title">Достопримечательности</h2>
+            <p class="section-subtitle">Места, которые стоит посетить</p>
 
             <div class="places-grid">
-                <!-- Belgrade Fortress -->
-                <div class="place-card">
-                    <div class="place-image image-container">
-                        <img src="images/belgrade-fortress.jpg" alt="Белградская крепость" class="responsive-image" loading="lazy">
-                        <div class="place-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.8/5</span>
-                        </div>
-                    </div>
-                    <div class="place-content">
+                <article class="place-card">
+                    <div class="place-image"><img src="images/belgrade-fortress.jpg" alt="Белградская крепость" loading="lazy"></div>
+                    <div class="place-card-content">
                         <h3>Белградская крепость</h3>
-                        <p>Исторический комплекс с видом на слияние Савы и Дуная, символ многовековой истории Белграда. Крепость пережила 115 сражений и была разрушена 44 раза.</p>
-                        <div class="place-meta">
-                            <div class="meta-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Белград</span>
-                            </div>
-                            <div class="meta-item">
-                                <i class="fas fa-ticket-alt"></i>
-                                <span>Вход бесплатный</span>
-                            </div>
-                            <div class="meta-item">
-                                <i class="fas fa-clock"></i>
-                                <span>Круглосуточно</span>
-                            </div>
-                        </div>
-                        <div class="place-features">
-                            <span class="feature-tag">История</span>
-                            <span class="feature-tag">Архитектура</span>
-                            <span class="feature-tag">Панорама</span>
-                        </div>
+                        <p>Панорама на слияние рек, музейные экспозиции и вечерние прогулки по Калемегдану.</p>
+                        <div class="place-meta">📍 Белград | ⭐ 4.8/5</div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Manastir Zica -->
-                <div class="place-card">
-                    <div class="place-image image-container">
-                        <img src="images/manastir-zica.jpg" alt="Монастырь Жича" class="responsive-image" loading="lazy">
-                        <div class="place-rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.9/5</span>
-                        </div>
+                <article class="place-card">
+                    <div class="place-image"><img src="images/tara-national-park.jpg" alt="Тара" loading="lazy"></div>
+                    <div class="place-card-content">
+                        <h3>Национальный парк Тара</h3>
+                        <p>Девственные леса, глубокие ущелья и отличные треки для пеших прогулок.</p>
+                        <div class="place-meta">📍 Байина Башта | ⭐ 4.9/5</div>
                     </div>
-                    <div class="place-content">
-                        <h3>Монастырь Жича</h3>
-                        <p>Духовный центр сербского православия с XIII века, место коронации семи сербских королей. Известен уникальной красной окраской и великолепными фресками.</p>
-                        <div class="place-meta">
-                            <div class="meta-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Кралево</span>
-                            </div>
-                            <div class="meta-item">
-                                <i class="fas fa-ticket-alt"></i>
-                                <span>Пожертвование</span>
-                            </div>
-                            <div class="meta-item">
-                                <i class="fas fa-clock"></i>
-                                <span>8:00-18:00</span>
-                            </div>
-                        </div>
-                        <div class="place-features">
-                            <span class="feature-tag">Религия</span>
-                            <span class="feature-tag">История</span>
-                            <span class="feature-tag">Архитектура</span>
-                        </div>
+                </article>
+
+                <article class="place-card">
+                    <div class="place-image"><img src="images/devils-town.jpg" alt="Дьявольский город" loading="lazy"></div>
+                    <div class="place-card-content">
+                        <h3>Дьявольский город (Đavolja Varoš)</h3>
+                        <p>Уникальные земляные столбы — природный феномен с местными легендами.</p>
+                        <div class="place-meta">📍 Куршумлия | ⭐ 4.7/5</div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Add more place cards similarly... -->
-            </div>
-
-            <div class="section-actions">
-                <a href="#bajina-basta" class="cta-button primary">
-                    <i class="fas fa-arrow-right"></i>
-                    <span>Далее: Байина Башта</span>
-                </a>
+                <article class="place-card">
+                    <div class="place-image"><img src="images/studenica-monastery.jpg" alt="Студеница" loading="lazy"></div>
+                    <div class="place-card-content">
+                        <h3>Монастырь Студеница</h3>
+                        <p>Объект ЮНЕСКО с византийскими фресками, важный центр духовной и культурной жизни.</p>
+                        <div class="place-meta">📍 Кралево | ⭐ 4.8/5</div>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Bajina Basta Section -->
-    <section id="bajina-basta" class="section">
+    <!-- TRANSPORT -->
+    <section id="transport" class="fade-in-section">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Байина Башта</h2>
-                <p class="section-subtitle">Жемчужина западной Сербии у подножия горы Тара</p>
+            <h2 class="section-title">Транспорт</h2>
+            <p class="section-subtitle">Как удобно перемещаться по Сербии</p>
+
+            <div class="transport-grid">
+                <div class="transport-card">
+                    <i class="fas fa-train"></i>
+                    <h3>Поезда</h3>
+                    <p>Железные дороги соединяют основные города. Поезда не всегда самые быстрые, но часто живописны и экономичны.</p>
+                </div>
+
+                <div class="transport-card">
+                    <i class="fas fa-bus"></i>
+                    <h3>Автобусы</h3>
+                    <p>Главный способ междугороднего перемещения — обширная сеть автобусов. Удобно и доступно по цене.</p>
+                </div>
+
+                <div class="transport-card">
+                    <i class="fas fa-car"></i>
+                    <h3>Аренда авто</h3>
+                    <p>Аренда даёт свободу исследовать горные регионы и маленькие деревни. Дороги в большинстве регионов держатся в хорошем состоянии.</p>
+                </div>
+
+                <div class="transport-card">
+                    <i class="fas fa-plane"></i>
+                    <h3>Авиасообщение</h3>
+                    <p>Международные рейсы в Белград (BEG). Из крупных городов Европы — регулярные рейсы, часто выгодные по цене.</p>
+                </div>
             </div>
 
-            <div class="bajina-hero">
-                <div class="bajina-content">
-                    <div class="bajina-text">
-                        <h3>Очаровательный город на западе Сербии</h3>
-                        <p><strong>Байина-Башта</strong> — очаровательный город на западе Сербии, расположенный у подножия горы Тара. Этот регион славится своей потрясающей природой и богатой историей.</p>
-                        
-                        <div class="bajina-highlights">
-                            <div class="highlight">
-                                <i class="fas fa-mountain"></i>
-                                <span>Гора Тара</span>
-                            </div>
-                            <div class="highlight">
-                                <i class="fas fa-monument"></i>
-                                <span>Монастырь Рача</span>
-                            </div>
-                            <div class="highlight">
-                                <i class="fas fa-home"></i>
-                                <span>Дом на Дрине</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bajina-visual">
-                        <div class="image-container about-image">
-                            <img src="images/bajina-basta-main.jpg" alt="Байина Башта" class="responsive-image" loading="lazy">
-                        </div>
+            <div class="transport-tips">
+                <p><strong>Полезно:</strong> бронируй междугородние билеты заранее в туристический сезон; при аренде авто проверяй страховку и условия возврата.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICES -->
+    <section id="prices" class="fade-in-section">
+        <div class="container">
+            <h2 class="section-title">Цены в Сербии</h2>
+            <p class="section-subtitle">Актуальные ориентиры на продукты и рестораны</p>
+
+            <div class="currency-converter">
+                <div class="converter-card">
+                    <h4>💱 Актуальный курс (примерно)</h4>
+                    <div class="rates">
+                        <div class="rate">1€ ≈ 117 RSD</div>
+                        <div class="rate">1$ ≈ 107 RSD</div>
+                        <div class="rate">1₽ ≈ 1.3 RSD</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Continue with other sections similarly... -->
-
+            <!-- pricing-grid оставляем как в оригинале (контент из твоего файла) -->
+            <div class="pricing-grid">
+                <!-- Сюда можно динамически подгружать данные через JS -->
+            </div>
         </div>
     </section>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+    <!-- FOOD -->
+    <section id="food" class="fade-in-section">
+        <div class="container">
+            <h2 class="section-title">Сербская кухня</h2>
+            <p class="section-subtitle">От плескавице до ракии — вкусы, которые стоит попробовать</p>
 
-    <!-- Scripts -->
+            <div class="food-grid">
+                <div class="food-card">
+                    <div class="food-image"><img src="images/pljeskavica.jpg" alt="Плескавица" loading="lazy"></div>
+                    <h3>Pljeskavica</h3>
+                    <p>Гигантская котлета, обязательно попробуй с местным соусом и лепёшкой.</p>
+                    <div class="price">400-600 RSD</div>
+                </div>
+
+                <div class="food-card">
+                    <div class="food-image"><img src="images/cevapi.jpg" alt="Чевапы" loading="lazy"></div>
+                    <h3>Ćevapi</h3>
+                    <p>Мясные колбаски с луком и сомуном — классика балканской кухни.</p>
+                    <div class="price">350-500 RSD</div>
+                </div>
+
+                <div class="food-card">
+                    <div class="food-image"><img src="images/ajvar.jpg" alt="Айвар" loading="lazy"></div>
+                    <h3>Ajvar</h3>
+                    <p>Икра из запечённых перцев — универсальная закуска к мясу и сырам.</p>
+                    <div class="price">200-300 RSD</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIPS & FAQ -->
+    <section id="tips" class="fade-in-section">
+        <div class="container">
+            <h2 class="section-title">Советы туристу и FAQ</h2>
+            <p class="section-subtitle">Практичные рекомендации для комфортной поездки</p>
+
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h4>Покупки и рынки</h4>
+                    <p>Покупай сезонные продукты на рынках (пијаца) — цена и качество часто лучше, чем в супермаркетах.</p>
+                </div>
+
+                <div class="tip-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Безопасность</h4>
+                    <p>Сербия в целом безопасна для туристов — соблюдай обычные меры предосторожности в больших городах.</p>
+                </div>
+
+                <div class="tip-card">
+                    <i class="fas fa-wallet"></i>
+                    <h4>Оплата</h4>
+                    <p>Наличная валюта — динар (RSD). В туристических местах принимают карты, но лучше иметь немного наличных.</p>
+                </div>
+
+                <div class="tip-card">
+                    <i class="fas fa-phone"></i>
+                    <h4>Связь и интернет</h4>
+                    <p>Местные SIM-карты и мобильный интернет доступны по разумным ценам — подключиться просто в аэропорту или в магазине оператора.</p>
+                </div>
+            </div>
+
+            <details class="faq-item">
+                <summary>Нужна ли виза для россиян?</summary>
+                <p>Для граждан России зачастую визы не требуются для краткосрочных туристических поездок (до 30 дней) — проверяй актуальные правила перед поездкой.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Какой язык говорят?</summary>
+                <p>Официальный — сербский. В туристических местах большинство понимает английский, в других — полезен базовый русский/польский/немецкий.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- FACTS -->
+    <section id="facts" class="fade-in-section">
+        <div class="container">
+            <h2 class="section-title">Факты и экономика</h2>
+            <p class="section-subtitle">Коротко о важных вещах</p>
+
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <i class="fas fa-landmark" aria-hidden="true"></i>
+                    <h3>Столица</h3>
+                    <p><strong>Белград</strong> — древний город с богатой историей и музеями.</p>
+                </div>
+
+                <div class="fact-card">
+                    <i class="fas fa-users" aria-hidden="true"></i>
+                    <h3>Население</h3>
+                    <p>Около 8–9 млн человек в зависимости от подсчёта. Сербы — основная этническая группа.</p>
+                </div>
+
+                <div class="fact-card">
+                    <i class="fas fa-money-bill-wave" aria-hidden="true"></i>
+                    <h3>Валюта</h3>
+                    <p>Сербский динар (RSD). Банкоматы доступны во всех городах.</p>
+                </div>
+
+                <div class="fact-card">
+                    <i class="fas fa-chart-line" aria-hidden="true"></i>
+                    <h3>Экономика</h3>
+                    <p>IT, сельское хозяйство и автомобилестроение — важные сектора экономики страны.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-title">Сербия</div>
+            <div class="footer-subtitle">Страна с богатой историей и большим сердцем 🇷🇸</div>
+            <p style="color:#666; margin-top:1rem">Проект — личный гид. Проверь актуальные правила перед поездкой.</p>
+            <div class="credits">
+                <p><strong>Личный проект Generallisto</strong> — создано с любовью к Сербии</p>
+                <p style="font-size:0.85rem; color:#9a9a9a; margin-top:0.5rem">© 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение существующих JS / CSS -->
     <script src="script.js"></script>
+
+    <!-- Доп. небольшой inline-скрипт для доступности навигации (работает поверх основного script.js) -->
+    <script>
+        // Обеспечить корректную работу кликов по nav-dot даже если CSS метки разные
+        document.querySelectorAll('.nav-dot').forEach(dot => {
+            dot.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') dot.click(); });
+        });
+
+        // Пометить элементы для появления (скрипт уже использует IntersectionObserver)
+        document.querySelectorAll('.fade-in-section, .timeline-item, .transport-card, .tip-card').forEach(el => {
+            el.classList.add('fade-target');
+        });
+
+        // Ленивая инициализация анимации чисел при видимости
+        const counters = document.querySelectorAll('.stat-number[data-target]');
+        if (counters.length) {
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const end = parseInt(el.getAttribute('data-target'), 10) || 0;
+                        animateCounter(el, 0, end, 1200);
+                        obs.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+            counters.forEach(c => obs.observe(c));
+        }
+    </script>
 </body>
 </html>
