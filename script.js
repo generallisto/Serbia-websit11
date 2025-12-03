@@ -7,92 +7,72 @@ const navLinks = document.querySelector(".nav-links");
 if (navToggle) {
     navToggle.addEventListener("click", () => {
         navLinks.classList.toggle("open");
-        const expanded = navToggle.getAttribute("aria-expanded") === "true";
-        navToggle.setAttribute("aria-expanded", !expanded);
     });
 }
+
+/* ======================
+   SCROLL FADE-UP
+====================== */
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("shown");
+        }
+    });
+}, { threshold: 0.2 });
+
+document.querySelectorAll("section, .culture-card, .place-card, .fact-card, .food-card, .price-category, .stat-card")
+    .forEach(el => {
+        el.classList.add("fade-up");
+        observer.observe(el);
+    });
 
 /* ======================
    SIDE DOT NAVIGATION
 ====================== */
 const dots = document.querySelectorAll(".nav-dot");
+const sections = document.querySelectorAll("section[id]");
 
 dots.forEach(dot => {
     dot.addEventListener("click", () => {
-        const sectionId = dot.dataset.section;
-        const section = document.getElementById(sectionId);
+        const id = dot.dataset.section;
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    });
+});
 
-        if (section) section.scrollIntoView({ behavior: "smooth" });
+window.addEventListener("scroll", () => {
+    let pos = window.scrollY + window.innerHeight / 2;
 
-        dots.forEach(d => d.classList.remove("active"));
-        dot.classList.add("active");
+    sections.forEach(sec => {
+        if (sec.offsetTop <= pos && sec.offsetTop + sec.offsetHeight > pos) {
+            let id = sec.getAttribute("id");
+            dots.forEach(d => d.classList.toggle("active", d.dataset.section === id));
+        }
     });
 });
 
 /* ======================
-   OBSERVER FADE-IN
+   FLOATING GOLD PARTICLES
 ====================== */
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
+const particles = document.createElement("div");
+particles.className = "gold-particles";
+document.body.appendChild(particles);
 
-            // Для таймлайна — пульсация точки
-            if (entry.target.classList.contains("timeline-item")) {
-                entry.target.classList.add("pulse");
-            }
-        }
-    });
-}, { threshold: 0.2 });
-
-document.querySelectorAll(".fade-target").forEach(el => observer.observe(el));
-
-/* ======================
-   ANIMATED NUMBERS
-====================== */
-function animateCounter(el, start, end, duration) {
-    let startTime = null;
-
-    function animate(ts) {
-        if (!startTime) startTime = ts;
-        const progress = Math.min((ts - startTime) / duration, 1);
-        const value = Math.floor(progress * (end - start) + start);
-
-        el.textContent = value.toLocaleString();
-
-        if (progress < 1) requestAnimationFrame(animate);
-    }
-
-    requestAnimationFrame(animate);
+for (let i = 0; i < 25; i++) {
+    const p = document.createElement("span");
+    p.className = "particle";
+    p.style.left = Math.random() * 100 + "%";
+    p.style.animationDuration = 4 + Math.random() * 6 + "s";
+    p.style.opacity = 0.3 + Math.random() * 0.7;
+    particles.appendChild(p);
 }
 
 /* ======================
-   UPDATE SIDE DOTS WHILE SCROLLING
+   PARALLAX (soft gold)
 ====================== */
-const sections = document.querySelectorAll("section[id]");
-
-window.addEventListener("scroll", () => {
-    let scrollPos = window.scrollY + window.innerHeight / 2;
-
-    sections.forEach(sec => {
-        if (sec.offsetTop <= scrollPos && sec.offsetTop + sec.offsetHeight > scrollPos) {
-            const id = sec.getAttribute("id");
-
-            dots.forEach(dot => {
-                dot.classList.toggle("active", dot.dataset.section === id);
-            });
-        }
-    });
-});
-
-/* ======================
-   PARALLAX HERO (soft)
-====================== */
-document.addEventListener("mousemove", e => {
-    const elements = document.querySelectorAll(".float");
-
-    elements.forEach(el => {
-        const speed = parseFloat(el.getAttribute("data-speed")) || 0.04;
+document.addEventListener("mousemove", (e) => {
+    document.querySelectorAll(".parallax").forEach(el => {
+        const speed = parseFloat(el.dataset.speed) || 0.03;
         const x = (window.innerWidth / 2 - e.clientX) * speed;
         const y = (window.innerHeight / 2 - e.clientY) * speed;
         el.style.transform = `translate(${x}px, ${y}px)`;
