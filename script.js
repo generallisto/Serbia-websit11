@@ -1,278 +1,207 @@
 /**
- * SERBIA TRAVEL PREMIUM - CORE ENGINE
- * Version: 2.0
- * Optimized for: Glassmorphism UI, High Performance
+ * SRBIJA GOLD - PREMIUM INTERACTIVE ENGINE
  */
 
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 1. GLOBAL CONFIG & STATE ---
-    const state = {
-        lastScrollY: 0,
-        isMobile: window.innerWidth < 992,
-        currencyRates: {
+    // --- 1. КОНФИГУРАЦИЯ И КУРСЫ ВАЛЮТ ---
+    const config = {
+        rates: {
             RSD: 1,
-            EUR: 0.0085, // Примерный курс: 117 RSD = 1 EUR
-            USD: 0.0093,
-            RUB: 0.85
+            EUR: 0.0085,
+            RUB: 0.82
         },
         currentCurrency: 'RSD'
     };
 
-    // --- 2. SMOOTH SCROLL & NAVIGATION ---
-    const initNavigation = () => {
-        const header = document.querySelector('.site-header');
-        const mobileToggle = document.querySelector('.mobile-toggle');
-        const navOverlay = document.createElement('div');
+    // --- 2. АНИМАЦИЯ ЗВЕЗДНОГО НЕБА (CANVAS) ---
+    const initStarfield = () => {
+        const canvas = document.getElementById('starfield');
+        if (!canvas) return;
         
-        // Создаем оверлей для мобильного меню динамически (если его нет в HTML)
-        if (!document.querySelector('.nav-overlay')) {
-            navOverlay.className = 'nav-overlay';
-            // Копируем ссылки для мобильной версии
-            const links = document.querySelector('.desktop-nav').innerHTML;
-            navOverlay.innerHTML = `<nav class="flex-column gap-md items-center">${links}</nav>`;
-            document.body.appendChild(navOverlay);
-        } else {
-             // Если уже есть в верстке (как в CSS media query)
-             // Просто выбираем его
-        }
-        
-        const overlayEl = document.querySelector('.nav-overlay');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        let fallingStars = [];
 
-        // Логика Бургер-меню
-        if (mobileToggle) {
-            mobileToggle.addEventListener('click', () => {
-                const isOpen = overlayEl.classList.toggle('open');
-                mobileToggle.classList.toggle('active'); // Можно добавить анимацию крестика в CSS
-                document.body.style.overflow = isOpen ? 'hidden' : '';
-                
-                // Анимация ссылок внутри меню
-                if (isOpen) {
-                    const links = overlayEl.querySelectorAll('a');
-                    links.forEach((link, idx) => {
-                        link.style.opacity = '0';
-                        link.style.transform = 'translateY(20px)';
-                        setTimeout(() => {
-                            link.style.transition = 'all 0.4s ease';
-                            link.style.opacity = '1';
-                            link.style.transform = 'translateY(0)';
-                        }, 100 + (idx * 50));
-                    });
-                }
-            });
-        }
+        const resize = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            createStars();
+        };
 
-        // Закрытие мобильного меню при клике на ссылку
-        overlayEl.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                overlayEl.classList.remove('open');
-                document.body.style.overflow = '';
-            });
-        });
+        const createStars = () => {
+            stars = [];
+            const count = Math.floor((canvas.width * canvas.height) / 3000);
+            for (let i = 0; i < count; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 1.5,
+                    opacity: Math.random(),
+                    speed: Math.random() * 0.02
+                });
+            }
+        };
 
-        // Плавный скролл для всех якорей
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElem = document.querySelector(targetId);
-                if (targetElem) {
-                    const headerHeight = document.querySelector('.site-header').offsetHeight;
-                    const elementPosition = targetElem.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 20;
+        const createFallingStar = () => {
+            if (Math.random() < 0.02) {
+                fallingStars.push({
+                    x: Math.random() * canvas.width,
+                    y: -20,
+                    speed: Math.random() * 6 + 4,
+                    length: Math.random() * 100 + 50,
+                    width: Math.random() * 2 + 1,
+                    opacity: 1
+                });
+            }
+        };
 
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Умный Хедер (Smart Header)
-        const handleHeaderScroll = () => {
-            const currentScrollY = window.scrollY;
+        const draw = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Добавляем фон при скролле
-            if (currentScrollY > 50) {
+            // Статичные мерцающие звезды
+            stars.forEach(s => {
+                s.opacity += s.speed;
+                if (s.opacity > 1 || s.opacity < 0) s.speed = -s.speed;
+                
+                ctx.globalAlpha = Math.abs(s.opacity);
+                ctx.fillStyle = "#fff";
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Падающие золотые звезды
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = "#ffcc00";
+            ctx.strokeStyle = "#ffcc00";
+            
+            fallingStars.forEach((fs, i) => {
+                ctx.globalAlpha = fs.opacity;
+                ctx.lineWidth = fs.width;
+                ctx.beginPath();
+                ctx.moveTo(fs.x, fs.y);
+                ctx.lineTo(fs.x - fs.length * 0.5, fs.y + fs.length);
+                ctx.stroke();
+
+                fs.y += fs.speed;
+                fs.x -= fs.speed * 0.5;
+                if (fs.y > canvas.height + 100) fallingStars.splice(i, 1);
+            });
+
+            ctx.shadowBlur = 0;
+            createFallingStar();
+            requestAnimationFrame(draw);
+        };
+
+        window.addEventListener('resize', resize);
+        resize();
+        draw();
+    };
+
+    // --- 3. КОНВЕРТЕР ВАЛЮТ (УМНЫЙ) ---
+    const initCurrency = () => {
+        const buttons = document.querySelectorAll('.curr-btn');
+        const priceElements = document.querySelectorAll('.price-tag');
+
+        // Сохраняем базовую цену (в RSD) для каждого элемента
+        priceElements.forEach(el => {
+            if (!el.dataset.base) {
+                const baseValue = parseFloat(el.innerText.replace(/[^0-9.]/g, ''));
+                el.dataset.base = baseValue;
+            }
+        });
+
+        const updatePrices = (currency) => {
+            const rate = config.rates[currency];
+            
+            priceElements.forEach(el => {
+                const baseValue = parseFloat(el.dataset.base);
+                const convertedValue = (baseValue * rate);
+                
+                // Эффект плавного пересчета
+                let displayValue;
+                if (currency === 'RSD') {
+                    displayValue = Math.round(convertedValue).toLocaleString();
+                } else {
+                    displayValue = convertedValue.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                }
+
+                // Анимация смены цифр
+                el.style.opacity = '0';
+                setTimeout(() => {
+                    el.innerHTML = `${displayValue}<span class="currency-label">${currency}</span>`;
+                    el.style.opacity = '1';
+                }, 200);
+            });
+        };
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                updatePrices(btn.dataset.curr.toUpperCase());
+            });
+        });
+    };
+
+    // --- 4. СКРОЛЛ-АНИМАЦИИ (REVEAL) ---
+    const initReveal = () => {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Дополнительная задержка для вложенных элементов, если нужно
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    };
+
+    // --- 5. ПОВЕДЕНИЕ ХЕДЕРА ---
+    const initHeader = () => {
+        const header = document.getElementById('header');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            // Фон при скролле
+            if (currentScroll > 100) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
 
-            // Скрываем хедер при скролле вниз, показываем при скролле вверх
-            if (currentScrollY > state.lastScrollY && currentScrollY > 200) {
+            // Скрытие/показ при направлении скролла
+            if (currentScroll > lastScroll && currentScroll > 300) {
                 header.style.transform = 'translateY(-100%)';
             } else {
                 header.style.transform = 'translateY(0)';
             }
-
-            state.lastScrollY = currentScrollY;
-        };
-
-        window.addEventListener('scroll', () => requestAnimationFrame(handleHeaderScroll));
-    };
-
-    // --- 3. PARALLAX HERO EFFECT ---
-    const initParallax = () => {
-        const heroBg = document.querySelector('.hero-bg');
-        const heroContent = document.querySelector('.hero-content');
-
-        if (!heroBg) return;
-
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            if (scrollY > window.innerHeight) return; // Оптимизация: не считать, если не видно
-
-            requestAnimationFrame(() => {
-                // Фон движется медленнее (эффект глубины)
-                heroBg.style.transform = `translateY(${scrollY * 0.5}px) scale(1.1)`; 
-                // Контент уходит чуть быстрее и прозрачнее
-                if (heroContent) {
-                    heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
-                    heroContent.style.opacity = 1 - (scrollY / 700);
-                }
-            });
+            lastScroll = currentScroll;
         });
     };
 
-    // --- 4. SCROLL REVEAL (Intersection Observer) ---
-    // Находит все элементы с классом .reveal и добавляет .active при появлении
-    const initScrollReveal = () => {
-        // Добавляем класс .reveal к основным блокам, если их нет в HTML
-        const sections = document.querySelectorAll('.card, .bento-item, .section-title, .about-text, .stat-item');
-        sections.forEach(el => el.classList.add('reveal'));
-
-        const observerOptions = {
-            threshold: 0.15, // Срабатывает, когда 15% элемента видно
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Запускаем анимацию только один раз
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-    };
-
-    // --- 5. ANIMATED NUMBERS (Stats) ---
-    const initCounters = () => {
-        const stats = document.querySelectorAll('.stat-number');
-        
-        const startCounter = (el) => {
-            const target = parseInt(el.getAttribute('data-target') || el.innerText.replace(/\D/g,'')); // Берем число из текста, если нет data-attr
-            const duration = 2000; // 2 секунды
-            const step = Math.ceil(target / (duration / 16)); // 60 FPS
-            let current = 0;
-
-            const update = () => {
-                current += step;
-                if (current < target) {
-                    el.innerText = current.toLocaleString();
-                    requestAnimationFrame(update);
-                } else {
-                    el.innerText = target.toLocaleString() + (el.innerText.includes('+') ? '+' : '');
-                }
-            };
-            update();
-        };
-
-        const statsObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    startCounter(entry.target);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        stats.forEach(stat => statsObserver.observe(stat));
-    };
-
-    // --- 6. CURRENCY CONVERTER ---
-    const initConverter = () => {
-        const btns = document.querySelectorAll('.currency-btn');
-        const prices = document.querySelectorAll('.price-val');
-        
-        // Сохраняем базовые цены (в RSD) при инициализации
-        prices.forEach(price => {
-            if (!price.dataset.base) {
-                // Очищаем текст от валюты и пробелов, берем только число
-                const val = parseFloat(price.innerText.replace(/[^0-9.]/g, ''));
-                price.dataset.base = val;
-            }
-        });
-
-        btns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // UI Update
-                btns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                // Logic Update
-                const currency = btn.innerText;
-                const rate = state.currencyRates[currency];
-                
-                prices.forEach(price => {
-                    const basePrice = parseFloat(price.dataset.base);
-                    const converted = Math.round(basePrice * rate);
-                    
-                    // Эффект плавного изменения цифр
-                    price.style.opacity = '0';
-                    setTimeout(() => {
-                        price.innerText = `${converted.toLocaleString()} ${currency}`;
-                        price.style.opacity = '1';
-                    }, 200);
-                });
-            });
-        });
-    };
-
-    // --- 7. MICRO-INTERACTIONS (Magnetic Buttons) ---
-    // Эффект притяжения кнопки к курсору
-    const initMagneticButtons = () => {
-        if (state.isMobile) return; // Отключаем на тач-устройствах
-
-        const buttons = document.querySelectorAll('.btn-primary, .nav-link');
-
-        buttons.forEach(btn => {
-            btn.addEventListener('mousemove', (e) => {
-                const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                // Вычисляем смещение (центр кнопки - 0,0)
-                const xMove = (x - rect.width / 2) / 4; // Делитель регулирует силу магнита
-                const yMove = (y - rect.height / 2) / 4;
-
-                btn.style.transform = `translate(${xMove}px, ${yMove}px)`;
-            });
-
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translate(0px, 0px)';
-            });
-        });
-    };
-
-    // --- 8. INITIALIZATION ---
+    // --- ИНИЦИАЛИЗАЦИЯ ВСЕХ МОДУЛЕЙ ---
     const init = () => {
-        initNavigation();
-        initParallax();
-        initScrollReveal();
-        initCounters();
-        initConverter();
-        initMagneticButtons();
+        initStarfield();
+        initCurrency();
+        initReveal();
+        initHeader();
         
-        console.log('🇷🇸 Serbia Premium Experience Loaded');
+        console.log('Srbija Gold Interactive Initialized');
     };
 
     init();
